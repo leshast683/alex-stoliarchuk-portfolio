@@ -228,8 +228,10 @@
 
   .imageWrapper {
     margin: 0 auto;
+    margin-top: 0 !important;
+    margin-left: 0 !important;
     width: 100%;
-    max-width: 250px;
+    max-width: 220px;
     aspect-ratio: 1/1;
   }
 

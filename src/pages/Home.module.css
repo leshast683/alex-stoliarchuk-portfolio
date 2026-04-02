@@ -113,9 +113,18 @@
     padding: 1rem;
   }
 
+  .heroImage {
+    order: unset;
+    width: 60%;
+    max-width: 240px;
+    aspect-ratio: 3/4;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    flex-shrink: 0;
+  }
+
   .heroImage:first-child {
     order: 1;
-    margin-left: 0;
   }
 
   .text {
@@ -126,15 +135,7 @@
 
   .heroImage:last-child {
     order: 3;
-    margin-right: 0;
-    margin-bottom: 0;
-  }
-
-  .heroImage {
-    width: 70%;
-    max-width: 260px;
-    aspect-ratio: 3/4;
-    margin: 0 auto;
+    margin-bottom: 0 !important;
   }
 
   .home h1 {
@@ -150,8 +151,8 @@
   }
 
   .heroImage {
-    width: 65%;
-    max-width: 220px;
+    width: 55%;
+    max-width: 200px;
   }
 
   .home h1 {
