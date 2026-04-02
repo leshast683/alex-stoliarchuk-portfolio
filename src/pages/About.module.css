@@ -1,0 +1,271 @@
+
+.about {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.leftSection {
+  flex: 1;
+  padding: 4rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contentLayout {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+  margin: 3rem 0;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+  margin-left: -200px;
+  margin-top: 180px;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  border: 4px solid white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.backgroundShape {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  top: -25px;
+  left: -25px;
+  z-index: 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1a2332, #2a4365, #3a5375);
+  animation: morphShape 12s ease-in-out infinite;
+  opacity: 0.8;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  transform-origin: center center;
+}
+
+@keyframes morphShape {
+  0% { 
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: scale(1);
+  }
+  50% { 
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: scale(1.05);
+  }
+  100% { 
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: scale(1);
+  }
+}
+
+.textContent {
+  flex: 1;
+  margin-top: -100px;
+}
+
+.rightImageWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  aspect-ratio: 1/1;
+  flex-shrink: 0;
+  margin-right: -200px;
+  margin-top: 600px;
+}
+
+.rightImageWrapper .profileImage {
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.rightBackgroundShape {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  top: -25px;
+  left: -25px;
+  z-index: 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a2a4a, #1a3a6b, #1a4a5a);
+  animation: morphShape 12s ease-in-out infinite;
+  opacity: 0.8;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  transform-origin: center center;
+}
+
+@keyframes morphShape {
+  0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50% { border-radius: 40% 60% 40% 60% / 70% 30% 50% 40%; }
+  75% { border-radius: 60% 30% 60% 40% / 40% 50% 60% 50%; }
+  100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+}
+
+.content {
+  width: 100%;
+}
+
+.aboutHeading {
+  text-align: center;
+}
+
+.bio p {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+
+.skillsContainer {
+  margin-top: 3rem;
+}
+
+.skillsContainer h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #000000;
+}
+
+.carouselWrapper {
+  overflow: hidden;
+  width: 100%;
+  max-width: 720px;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  animation: scrollCarousel 18s linear infinite;
+}
+
+
+@keyframes scrollCarousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.skillCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+
+.skillIcon {
+  font-size: 3.5rem;
+  color: #000000;
+  line-height: 1;
+}
+
+.skillIconImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skillLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #000000;
+  white-space: nowrap;
+}
+
+.interestsContainer {
+  margin-top: 3rem;
+}
+
+.interestsContainer h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #000000;
+}
+
+.interestsContainer p {
+  line-height: 1.6;
+  color: #4a4a4a;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .leftSection {
+    padding: 2rem 1rem;
+  }
+
+  .contentLayout {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .imageWrapper {
+    margin: 0;
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 1/1;
+  }
+
+  .rightImageWrapper {
+    margin: 0;
+    width: 100%;
+    max-width: 250px;
+    aspect-ratio: 1/1;
+  }
+
+  .backgroundShape {
+    width: 100%;
+    height: 100%;
+    top: -10px;
+    left: -10px;
+  }
+
+  .textContent {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+
+}
+
+@media (max-width: 480px) {
+  .leftSection {
+    padding: 1rem;
+  }
+
+  .imageWrapper {
+    max-width: 200px;
+  }
+
+
+  .interestsContainer {
+    margin-bottom: 5rem;
+  }
+}

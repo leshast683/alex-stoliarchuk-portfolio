@@ -1,0 +1,364 @@
+.page {
+  min-height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 3rem 0.5rem;
+  width: 100%;
+}
+
+.backArrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #000;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+  padding: 0.6rem 1.2rem;
+  border: 2px solid #000;
+  border-radius: 50px;
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  width: fit-content;
+}
+
+.backArrow:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.heroText {
+  flex: 1;
+}
+
+.tag {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #888;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+.heroText h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+}
+
+.heroSub {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.liveLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.2rem;
+  padding: 0.6rem 1.4rem;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.liveLink:hover {
+  background: #333;
+}
+
+.logoCircle {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Overview strip */
+.overviewStrip {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 4rem;
+}
+
+.overviewItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.2rem 1.5rem;
+  border-right: 1px solid #e0e0e0;
+  font-size: 0.95rem;
+}
+
+.overviewItem:last-child {
+  border-right: none;
+}
+
+.overviewLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+  font-weight: 600;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 4rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.sectionIntro {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 640px;
+}
+
+/* Research cards */
+.researchCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.researchCard {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.researchEmoji {
+  font-size: 1.8rem;
+}
+
+.researchCard h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.researchCard p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Responsibilities */
+.responsibilityList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.responsibilityItem {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.bullet {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ccc;
+  flex-shrink: 0;
+  width: 2rem;
+  padding-top: 2px;
+}
+
+.responsibilityItem strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.responsibilityItem p {
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Impact */
+.impactGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.impactCard {
+  background: #000;
+  color: #fff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.impactCard p {
+  margin: 0;
+}
+
+/* Redesign */
+.redesignGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.redesignItem {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f0f0f0;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+}
+
+.redesignItem:hover .redesignImg {
+  transform: scale(1.03);
+}
+
+.redesignImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+.lightboxImg {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  font-weight: 300;
+  z-index: 10000;
+  padding: 0.2rem 0.5rem;
+}
+
+.lightboxPrev,
+.lightboxNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.15);
+  border: 2px solid #fff;
+  color: #fff;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  font-size: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.2s ease;
+  z-index: 10000;
+}
+
+.lightboxPrev { left: 1.5rem; }
+.lightboxNext { right: 1.5rem; }
+
+.lightboxPrev:hover,
+.lightboxNext:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column-reverse;
+  }
+
+  .heroText h1 {
+    font-size: 2rem;
+  }
+
+  .logoCircle {
+    width: 180px;
+    height: 180px;
+  }
+
+  .overviewStrip {
+    flex-wrap: wrap;
+  }
+
+  .overviewItem {
+    flex: 1 1 40%;
+  }
+
+  .researchCards,
+  .impactGrid,
+  .redesignGrid {
+    grid-template-columns: 1fr;
+  }
+}
