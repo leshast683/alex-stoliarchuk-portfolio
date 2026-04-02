@@ -248,10 +248,27 @@
   .textContent {
     margin-top: 0;
     text-align: center;
+    width: 100%;
+  }
+
+  .bio p {
+    text-align: left;
+    font-size: 0.95rem;
+  }
+
+  .interestsContainer p {
+    text-align: left;
+    font-size: 0.95rem;
   }
 
   .carouselWrapper {
     max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .skillsContainer h2,
+  .interestsContainer h2 {
+    text-align: center;
   }
 }
 
