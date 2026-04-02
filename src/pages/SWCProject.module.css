@@ -335,8 +335,14 @@
 }
 
 @media (max-width: 768px) {
+  .wrapper {
+    max-width: 95%;
+    padding: 2rem 0.5rem;
+  }
+
   .hero {
     flex-direction: column-reverse;
+    gap: 1.5rem;
   }
 
   .heroText h1 {
@@ -360,5 +366,49 @@
   .impactGrid,
   .redesignGrid {
     grid-template-columns: 1fr;
+  }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    max-width: 100%;
+    padding: 1.5rem 1rem;
+  }
+
+  .heroText h1 {
+    font-size: 1.6rem;
+  }
+
+  .heroSub {
+    font-size: 1rem;
+  }
+
+  .logoCircle {
+    width: 140px;
+    height: 140px;
+  }
+
+  .overviewItem {
+    flex: 1 1 100%;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+
+  .lightboxPrev { left: 0.5rem; }
+  .lightboxNext { right: 0.5rem; }
+
+  .lightboxPrev,
+  .lightboxNext {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
   }
 }

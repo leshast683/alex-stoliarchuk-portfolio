@@ -88,14 +88,19 @@
 @media (max-width: 1024px) {
   .content {
     padding: 1rem;
+    gap: 2rem;
   }
-  
+
   .text {
     max-width: 400px;
   }
-  
+
   .home h1 {
     font-size: 2.8rem;
+  }
+
+  .heroImage {
+    max-width: 260px;
   }
 }
 

@@ -215,7 +215,7 @@
   .container {
     flex-direction: column;
   }
-  
+
   .leftSection {
     padding: 2rem 1rem;
   }
@@ -227,32 +227,32 @@
   }
 
   .imageWrapper {
-    margin: 0;
+    margin: 0 auto;
     width: 100%;
     max-width: 250px;
     aspect-ratio: 1/1;
   }
 
   .rightImageWrapper {
-    margin: 0;
-    width: 100%;
-    max-width: 250px;
-    aspect-ratio: 1/1;
+    display: none;
   }
 
-  .backgroundShape {
-    width: 100%;
-    height: 100%;
+  .backgroundShape,
+  .rightBackgroundShape {
+    width: 280px;
+    height: 280px;
     top: -10px;
     left: -10px;
   }
 
   .textContent {
-    margin-top: 2rem;
+    margin-top: 0;
     text-align: center;
   }
 
-
+  .carouselWrapper {
+    max-width: 100%;
+  }
 }
 
 @media (max-width: 480px) {
@@ -264,8 +264,12 @@
     max-width: 200px;
   }
 
+  .skillsContainer h2,
+  .interestsContainer h2 {
+    font-size: 1.5rem;
+  }
 
   .interestsContainer {
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
   }
 }

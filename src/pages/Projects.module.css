@@ -272,6 +272,11 @@
     gap: 1.5rem;
   }
 
+  .projectPage {
+    max-width: 100%;
+    padding: 1.5rem 0.5rem;
+  }
+
   .framesContainer {
     padding: 0.5rem;
     justify-content: center;
