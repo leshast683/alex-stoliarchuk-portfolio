@@ -195,6 +195,10 @@ body {
     padding-bottom: 3rem;
   }
 
+  #home {
+    padding-top: 0.5rem;
+  }
+
   .resume-section {
     margin-top: -2rem;
     padding-bottom: 3rem;
