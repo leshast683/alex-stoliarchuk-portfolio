@@ -183,8 +183,9 @@ body {
   }
 
   .resume-iframe {
-    width: 88%;
-    height: 80vh;
+    width: 78%;
+    height: calc(100vh - 7rem);
+    margin-top: 3.5rem;
   }
 
   .resume-overlay-close {
@@ -202,18 +203,20 @@ body {
   }
 
   .resume-download-btn {
-    position: static;
-    display: block;
-    margin: 1rem auto 0;
-    text-align: center;
-    font-size: 0.85rem;
-    padding: 0.5rem 1.5rem;
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.9rem;
+    padding: 0.6rem 2rem;
+    white-space: nowrap;
   }
 
   .resume-overlay {
     flex-direction: column;
-    justify-content: center;
-    padding-top: 3.5rem;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
   }
 
   .main-content {
