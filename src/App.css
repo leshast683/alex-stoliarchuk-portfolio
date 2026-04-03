@@ -183,7 +183,7 @@ body {
   }
 
   .resume-iframe {
-    width: 78%;
+    width: 100%;
     height: calc(100vh - 7rem);
     margin-top: 3.5rem;
   }
