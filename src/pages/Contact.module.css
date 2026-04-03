@@ -274,7 +274,7 @@ button:disabled {
 @media (max-width: 480px) {
   .contactSection {
     padding: 1.5rem 0.75rem;
-    padding-bottom: 5rem;
+    padding-bottom: 1.5rem;
   }
 
   h1 {

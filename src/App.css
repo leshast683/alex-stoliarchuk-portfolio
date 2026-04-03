@@ -196,21 +196,28 @@ body {
   }
 
   #home {
-    padding-top: 0.5rem;
+    padding-top: 0rem;
   }
 
-  .resume-section {
+  #about {
+    padding-bottom: 1rem;
+  }
+
+  #projects {
     margin-top: -2rem;
-    padding-bottom: 3rem;
+    padding-top: 1rem;
   }
 
   .contact-section {
     margin-left: -1rem;
     margin-right: -1rem;
+    padding-bottom: 0 !important;
+    margin-bottom: 0;
   }
 
-  #projects {
-    margin-top: -4rem;
+  .resume-section {
+    margin-top: -2rem;
+    padding-bottom: 2rem;
   }
 }
 
@@ -231,7 +238,7 @@ body {
 
   .resume-section {
     margin-top: -1rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1.5rem;
   }
 
   .scroll-top-btn {
@@ -244,9 +251,11 @@ body {
   .contact-section {
     margin-left: -1rem;
     margin-right: -1rem;
+    padding-bottom: 0 !important;
+    margin-bottom: 0;
   }
 
   #projects {
-    margin-top: -2rem;
+    margin-top: -1rem;
   }
 }
