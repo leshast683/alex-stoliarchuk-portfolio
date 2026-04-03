@@ -222,7 +222,7 @@
 
   .contentLayout {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
   }
 
@@ -306,6 +306,6 @@
   }
 
   .interestsContainer {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 }
