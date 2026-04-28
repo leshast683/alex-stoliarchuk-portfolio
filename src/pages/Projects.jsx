@@ -34,7 +34,7 @@ const allProjects = [
     title: "Packmates",
     description: "A collaborative travel packing app built as a capstone project. Features adaptive packing lists powered by a weather API, trip management, and a smart QR code luggage tag.",
     tech: "HTML, CSS, JavaScript, PHP",
-    image: "/img/logopack.png",
+    logo: "/img/logopack.png",
     type: "packmates"
   },
   {
