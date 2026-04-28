@@ -6,7 +6,7 @@ const Navbar = memo(function Navbar() {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <a href="/#home" className={styles.logoShimmer}>Alex Stoliarchuk</a>
+        <a href="/#home" className={styles.logoShimmer}>Alex Builds Web</a>
       </div>
       <div className={styles.links}>
         <a href="/#home">Home</a>

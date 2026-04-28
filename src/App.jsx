@@ -42,19 +42,19 @@ function MainPage() {
   return (
     <div className="app">
       <Helmet>
-        <title>Alex Stoliarchuk — UX/UI Designer & Web Developer</title>
-        <meta name="description" content="Portfolio of Alex Stoliarchuk — Digital Media student at UCF specializing in UX/UI design, web development, landing pages, and mobile app design." />
-        <meta name="keywords" content="Alex Stoliarchuk, UX/UI designer, web developer, portfolio, landing page design, mobile app design, UCF, digital media, business website" />
-        <meta name="author" content="Alex Stoliarchuk" />
+        <title>Alex Builds Web — UX/UI Designer & Web Developer</title>
+        <meta name="description" content="Portfolio of Alex Builds Web — Digital Media student at UCF specializing in UX/UI design, web development, landing pages, and mobile app design." />
+        <meta name="keywords" content="Alex Builds Web, UX/UI designer, web developer, portfolio, landing page design, mobile app design, UCF, digital media, business website" />
+        <meta name="author" content="Alex Builds Web" />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://alexbuildsweb.com" />
-        <meta property="og:title" content="Alex Stoliarchuk — UX/UI Designer & Web Developer" />
-        <meta property="og:description" content="Portfolio of Alex Stoliarchuk — UX/UI design, web development, landing pages, and creative digital experiences." />
+        <meta property="og:title" content="Alex Builds Web — UX/UI Designer & Web Developer" />
+        <meta property="og:description" content="Portfolio of Alex Builds Web — UX/UI design, web development, landing pages, and creative digital experiences." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://alexbuildsweb.com" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Alex Stoliarchuk — UX/UI Designer & Web Developer" />
-        <meta name="twitter:description" content="Portfolio of Alex Stoliarchuk — UX/UI design, web development, landing pages, and creative digital experiences." />
+        <meta name="twitter:title" content="Alex Builds Web — UX/UI Designer & Web Developer" />
+        <meta name="twitter:description" content="Portfolio of Alex Builds Web — UX/UI design, web development, landing pages, and creative digital experiences." />
       </Helmet>
       <Navbar />
       <main className="main-content">
