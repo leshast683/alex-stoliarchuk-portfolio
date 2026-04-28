@@ -99,6 +99,28 @@ export default function BudgetlyProject() {
           </div>
         </section>
 
+        {/* Color Palette */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>🎨 Color Palette</h2>
+          <p className={styles.sectionIntro}>Budgetly uses a warm, earthy palette — calm and approachable for a finance tool, with clear semantic colors for income, expenses, and highlights.</p>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            {[
+              { color: '#1a0e06', label: 'Dark Brown', hex: '#1A0E06' },
+              { color: '#ede8e0', label: 'Cream', hex: '#EDE8E0', border: true },
+              { color: '#34A853', label: 'Income', hex: '#34A853' },
+              { color: '#EA4335', label: 'Expenses', hex: '#EA4335' },
+              { color: '#FBBC05', label: 'Amber', hex: '#FBBC05' },
+              { color: '#4285F4', label: 'Interactive', hex: '#4285F4' },
+            ].map(({ color, label, hex, border }) => (
+              <div key={hex} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ width: '72px', height: '72px', borderRadius: '12px', background: color, border: border ? '1px solid #e0e0e0' : 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
+                <span style={{ fontSize: '0.8rem', fontWeight: '600', color: '#333' }}>{label}</span>
+                <span style={{ fontSize: '0.72rem', color: '#999', fontFamily: 'monospace' }}>{hex}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* Impact */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>🏆 Why It Matters</h2>
