@@ -37,8 +37,8 @@ export default function PackmatesProject() {
             <h1>Packmates</h1>
             <p className={styles.heroSub}>A collaborative travel packing app with weather-based adaptive lists, trip management, and a smart physical tag — built as a capstone project.</p>
           </div>
-          <div className={styles.logoCircle}>
-            <img src="/img/logo.pack.png" alt="Packmates Logo" className={styles.logo} />
+          <div className={styles.logoCircle} style={{ background: '#f5f5f5' }}>
+            <img src="/img/logo.pack.png" alt="Packmates Logo" className={styles.logo} style={{ objectFit: 'contain', padding: '20px' }} />
           </div>
         </div>
 
