@@ -100,6 +100,52 @@ export default function PackmatesProject() {
           </div>
         </section>
 
+        {/* Design Guide */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>🎨 Design Guide</h2>
+          <p className={styles.sectionIntro}>The visual identity was built around a travel-inspired palette — deep navy for trust, teal for adventure, and green for action — paired with clean, modern typography.</p>
+
+          <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '1rem', color: '#000' }}>Color Palette</h3>
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '2.5rem', flexWrap: 'wrap' }}>
+            {[
+              { color: '#1B3558', label: 'Navy', hex: '#1B3558' },
+              { color: '#2E8FA5', label: 'Teal', hex: '#2E8FA5' },
+              { color: '#4CAF50', label: 'Green', hex: '#4CAF50' },
+              { color: '#D9E8EF', label: 'Light Gray', hex: '#D9E8EF' },
+              { color: '#000000', label: 'Black', hex: '#000000' },
+            ].map(({ color, label, hex }) => (
+              <div key={hex} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
+                <div style={{ width: '72px', height: '72px', borderRadius: '12px', background: color, border: '1px solid #e0e0e0', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
+                <span style={{ fontSize: '0.8rem', fontWeight: '600', color: '#333' }}>{label}</span>
+                <span style={{ fontSize: '0.72rem', color: '#999', fontFamily: 'monospace' }}>{hex}</span>
+              </div>
+            ))}
+          </div>
+
+          <h3 style={{ fontSize: '1rem', fontWeight: '700', marginBottom: '1rem', color: '#000' }}>Typography</h3>
+          <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
+            <div style={{ background: '#f9f9f9', borderRadius: '12px', padding: '1.5rem 2rem', flex: '1', minWidth: '200px' }}>
+              <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#999', margin: '0 0 0.5rem' }}>Headings</p>
+              <p style={{ fontSize: '2rem', fontWeight: '800', margin: '0 0 0.3rem', color: '#1B3558' }}>Blauer Nue</p>
+              <p style={{ fontSize: '0.85rem', color: '#666', margin: 0 }}>Bold · 72px / 48px</p>
+            </div>
+            <div style={{ background: '#f9f9f9', borderRadius: '12px', padding: '1.5rem 2rem', flex: '1', minWidth: '200px' }}>
+              <p style={{ fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#999', margin: '0 0 0.5rem' }}>Body</p>
+              <p style={{ fontSize: '2rem', fontWeight: '400', margin: '0 0 0.3rem', color: '#1B3558', fontFamily: 'sans-serif' }}>Montserrat</p>
+              <p style={{ fontSize: '0.85rem', color: '#666', margin: 0 }}>Regular · 24px / 16px</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Lo-Fi Prototype */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>📐 Lo-Fi Prototype</h2>
+          <p className={styles.sectionIntro}>Early wireframes mapped out the full user flow — from login and sign-up through trip creation, packing list management, and notifications.</p>
+          <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #e0e0e0', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+            <img src="/img/packmates-lofi.png" alt="Packmates Lo-Fi Wireframes" style={{ width: '100%', display: 'block' }} />
+          </div>
+        </section>
+
         {/* Impact */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>🏆 What We Delivered</h2>
