@@ -10,6 +10,7 @@ import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import SWCProject from './pages/SWCProject';
+import BudgetlyProject from './pages/BudgetlyProject';
 import { trackSectionView, trackEvent } from './analytics';
 import './App.css';
 
@@ -113,6 +114,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/swc-project" element={<SWCProject />} />
+        <Route path="/budgetly-project" element={<BudgetlyProject />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>

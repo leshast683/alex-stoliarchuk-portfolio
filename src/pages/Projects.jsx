@@ -32,10 +32,10 @@ const allProjects = [
   {
     id: 4,
     title: "Budgetly",
-    description: "A personal finance tracker built with Claude AI. Track income, expenses, and savings goals in one clean dashboard — designed to make budgeting simple and stress-free.",
-    tech: "Claude AI, HTML, CSS, JavaScript",
-    type: "link",
-    url: "https://budgetly-sage.vercel.app/index.html?home=1"
+    description: "A personal finance tracker built entirely with Claude. Track income, expenses, and savings goals in one clean dashboard — designed to make budgeting simple and stress-free.",
+    tech: "Claude",
+    image: "/img/budgetly.png",
+    type: "budgetly"
   }
 ];
 
@@ -86,6 +86,8 @@ export default function Projects() {
             <p className={styles.tech}>{project.tech}</p>
             {project.type === 'swc' ? (
               <button className={styles.viewButton} onClick={() => window.open('/swc-project', '_blank')}>View Project</button>
+            ) : project.type === 'budgetly' ? (
+              <button className={styles.viewButton} onClick={() => window.open('/budgetly-project', '_blank')}>View Project</button>
             ) : project.type === 'link' ? (
               <button className={styles.viewButton} onClick={() => window.open(project.url, '_blank')}>View Project</button>
             ) : (
