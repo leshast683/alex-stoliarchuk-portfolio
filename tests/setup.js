@@ -1,1 +1,1 @@
-process.env.RESEND_API_KEY = 're_test_placeholder';
+// Environment variables are loaded from .env.test via --env-file in the test scripts
