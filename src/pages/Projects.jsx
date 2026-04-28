@@ -31,6 +31,14 @@ export default function Projects() {
       image: "/img/manager.jpg",
       type: "modal",
       images: ["/img/priority1.jpg", "/img/priority2.jpg", "/img/priority3.jpg", "/img/priority4.jpg"]
+    },
+    {
+      id: 4,
+      title: "Budgetly",
+      description: "A personal finance tracker built with Claude AI. Track income, expenses, and savings goals in one clean dashboard — designed to make budgeting simple and stress-free.",
+      tech: "Claude AI, HTML, CSS, JavaScript",
+      type: "link",
+      url: "https://budgetly-sage.vercel.app/index.html?home=1"
     }
   ];
 
@@ -78,13 +86,15 @@ export default function Projects() {
               <div className={styles.logoPlaceholder}>
                 <img src={project.logo} alt={`${project.title} logo`} className={styles.projectLogo} />
               </div>
-            ) : (
+            ) : project.image ? (
               <img src={project.image} alt={project.title} className={styles.previewImage} />
-            )}
+            ) : null}
             <p>{project.description}</p>
             <p className={styles.tech}>{project.tech}</p>
             {project.type === 'swc' ? (
               <button className={styles.viewButton} onClick={() => window.open('/swc-project', '_blank')}>View Project</button>
+            ) : project.type === 'link' ? (
+              <button className={styles.viewButton} onClick={() => window.open(project.url, '_blank')}>View Project</button>
             ) : (
               <button className={styles.viewButton} onClick={() => openModal(project)}>View Project</button>
             )}
