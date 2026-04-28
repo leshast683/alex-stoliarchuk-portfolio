@@ -37,4 +37,4 @@ npm run dev
 
 - 🌐 [alexbuildsweb.com](https://alexbuildsweb.com)
 - 💼 [LinkedIn](https://www.linkedin.com/in/alex-stoliarchuk/)
-- 📸 [Instagram](https://www.instagram.com/im_a.l.e.x/)
+- 📸 [Instagram](https://www.instagram.com/alexbuildsweb)

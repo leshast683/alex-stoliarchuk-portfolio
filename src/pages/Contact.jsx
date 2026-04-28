@@ -76,7 +76,7 @@ export default function Contact() {
               <div className={styles.leftSection}>
                 <div className={styles.badge}>My Social Media Platforms</div>
                 <div className={styles.socialMediaIcons}>
-                  <a href="https://www.instagram.com/im_a.l.e.x/?igsh=NWl0OWdsOGVsejZn&utm_source=qr" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.instagram.com/alexbuildsweb?igsh=MXhweDltNWc2NjF6dg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">
                     <img src="/img/instagram.png" alt="Instagram" className={styles.socialIcon} />
                   </a>
                   <a href="https://www.tiktok.com/@im_a.l.e.x_" target="_blank" rel="noopener noreferrer">
