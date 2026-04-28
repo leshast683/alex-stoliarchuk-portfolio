@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { Resend } from 'resend';
 
 const app = express();
@@ -45,7 +46,13 @@ app.get('/api/projects', (req, res) => {
   res.json(projects);
 });
 
-app.post('/api/contact', async (req, res) => {
+const contactLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  message: { error: 'Too many requests, please try again later.' }
+});
+
+app.post('/api/contact', contactLimiter, async (req, res) => {
   const { name, company, email, phone, service, message } = req.body;
 
   try {
