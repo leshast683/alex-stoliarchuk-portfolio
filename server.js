@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import sanitizeHtml from 'sanitize-html';
 import { Resend } from 'resend';
 
 const app = express();
@@ -53,7 +54,13 @@ const contactLimiter = rateLimit({
 });
 
 app.post('/api/contact', contactLimiter, async (req, res) => {
-  const { name, company, email, phone, service, message } = req.body;
+  const sanitize = (val) => sanitizeHtml(val ?? '', { allowedTags: [], allowedAttributes: {} });
+  const name = sanitize(req.body.name);
+  const company = sanitize(req.body.company);
+  const email = sanitize(req.body.email);
+  const phone = sanitize(req.body.phone);
+  const service = sanitize(req.body.service);
+  const message = sanitize(req.body.message);
 
   try {
     await resend.emails.send({
