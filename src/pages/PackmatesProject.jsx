@@ -146,6 +146,15 @@ export default function PackmatesProject() {
           </div>
         </section>
 
+        {/* Site Map */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>🗺️ Final Site Map</h2>
+          <p className={styles.sectionIntro}>The final site map outlines the full structure of Packmates — from registration and login through the home dashboard, smart packing list, trip creation, and all supporting screens.</p>
+          <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #e0e0e0', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
+            <img src="/img/packmates-sitemap.png" alt="Packmates Final Site Map" style={{ width: '100%', display: 'block' }} />
+          </div>
+        </section>
+
         {/* Impact */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>🏆 What We Delivered</h2>
