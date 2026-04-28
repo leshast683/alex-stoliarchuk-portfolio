@@ -114,7 +114,13 @@ export default function Projects() {
               <button className={styles.viewButton} onClick={() => window.open('/packmates-project', '_blank')}>View Project</button>
             ) : project.type === 'link' ? (
               <button className={styles.viewButton} onClick={() => window.open(project.url, '_blank')}>View Project</button>
-            ) : project.type === 'coming-soon' ? null : (
+            ) : project.type === 'coming-soon' ? (
+              <button className={styles.viewButton} onClick={() => {
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else window.location.href = '/#contact';
+              }}>Notify Me</button>
+            ) : (
               <button className={styles.viewButton} onClick={() => openModal(project)}>View Project</button>
             )}
           </div>
