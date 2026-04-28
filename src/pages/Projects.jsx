@@ -44,8 +44,8 @@ export default function Projects() {
 
   useEffect(() => {
     fetch('/api/projects')
-      .then(res => res.json())
-      .then(data => setProjects(data))
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => Array.isArray(data) ? setProjects(data) : setProjects(fallback))
       .catch(() => setProjects(fallback));
   }, []);
 
