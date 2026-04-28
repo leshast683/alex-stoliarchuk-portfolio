@@ -67,6 +67,13 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   const service = sanitize(req.body.service);
   const message = sanitize(req.body.message);
 
+  if (!name || !email || !message) {
+    return res.status(400).json({ error: 'Name, email, and message are required.' });
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return res.status(400).json({ error: 'Invalid email format.' });
+  }
+
   try {
     await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
