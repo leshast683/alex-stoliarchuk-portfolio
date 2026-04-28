@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import sanitizeHtml from 'sanitize-html';
 import { Resend } from 'resend';
+import { contactEmailTemplate } from './templates/contact.js';
 
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -71,16 +72,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
       from: 'Portfolio Contact <onboarding@resend.dev>',
       to: 'alexbuildsweb1@gmail.com',
       subject: `New message from ${name}`,
-      html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Company:</strong> ${company || 'N/A'}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
-        <p><strong>Service:</strong> ${service || 'N/A'}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
+      html: contactEmailTemplate({ name, company, email, phone, service, message }),
     });
     res.json({ success: true });
   } catch (err) {
