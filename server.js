@@ -43,6 +43,10 @@ const projects = [
   }
 ];
 
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
 app.get('/api/projects', (req, res) => {
   res.json(projects);
 });
