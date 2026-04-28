@@ -81,4 +81,6 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
   }
 });
 
+app.use((req, res) => res.status(404).json({ error: 'Not found' }));
+
 app.listen(3001, () => console.log('API server running on port 3001'));
