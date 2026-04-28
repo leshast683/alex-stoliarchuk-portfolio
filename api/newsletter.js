@@ -3,12 +3,12 @@ import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDoc
 import { Resend } from 'resend';
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY || 'AIzaSyD84A0lMn2KTS75EGeO4z-yxj0rWWQZ5_I',
-  authDomain: 'contact-717a6.firebaseapp.com',
-  projectId: 'contact-717a6',
-  storageBucket: 'contact-717a6.firebasestorage.app',
-  messagingSenderId: '640878400769',
-  appId: '1:640878400769:web:a361a7716bbd6c6c57f700',
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
 };
 
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
