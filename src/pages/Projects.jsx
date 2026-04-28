@@ -31,6 +31,14 @@ const allProjects = [
   },
   {
     id: 4,
+    title: "Packmates",
+    description: "A collaborative travel packing app built as a capstone project. Features adaptive packing lists powered by a weather API, trip management, and a smart QR code luggage tag.",
+    tech: "HTML, CSS, JavaScript, PHP",
+    image: "/img/logopack.png",
+    type: "packmates"
+  },
+  {
+    id: 5,
     title: "Budgetly",
     description: "A personal finance tracker built entirely with Claude. Track income, expenses, and savings goals in one clean dashboard — designed to make budgeting simple and stress-free.",
     tech: "Claude",
@@ -88,6 +96,8 @@ export default function Projects() {
               <button className={styles.viewButton} onClick={() => window.open('/swc-project', '_blank')}>View Project</button>
             ) : project.type === 'budgetly' ? (
               <button className={styles.viewButton} onClick={() => window.open('/budgetly-project', '_blank')}>View Project</button>
+            ) : project.type === 'packmates' ? (
+              <button className={styles.viewButton} onClick={() => window.open('/packmates-project', '_blank')}>View Project</button>
             ) : project.type === 'link' ? (
               <button className={styles.viewButton} onClick={() => window.open(project.url, '_blank')}>View Project</button>
             ) : (
