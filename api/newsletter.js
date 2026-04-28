@@ -41,7 +41,7 @@ export default async function handler(req, res) {
 
     // Send confirmation email
     await resend.emails.send({
-      from: 'Alex Stoliarchuk <onboarding@resend.dev>',
+      from: 'Alex Builds Web <onboarding@resend.dev>',
       to: email,
       subject: 'You\'re on the list!',
       html: `
@@ -50,7 +50,7 @@ export default async function handler(req, res) {
           <p style="color: #444; line-height: 1.6;">
             You'll be the first to know when I launch new projects or publish something new.
           </p>
-          <p style="color: #888; font-size: 0.9rem;">— Alex Stoliarchuk</p>
+          <p style="color: #888; font-size: 0.9rem;">— Alex Builds Web</p>
         </div>
       `,
     });
