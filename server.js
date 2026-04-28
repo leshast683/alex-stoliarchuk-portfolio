@@ -1,10 +1,12 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import { Resend } from 'resend';
 
 const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
