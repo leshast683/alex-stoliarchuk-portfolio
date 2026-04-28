@@ -82,7 +82,7 @@ export default function Contact() {
                   <a href="https://www.tiktok.com/@im_a.l.e.x_" target="_blank" rel="noopener noreferrer">
                     <img src="/img/tiktok.png" alt="TikTok" className={styles.socialIcon} />
                   </a>
-                  <a href="https://www.youtube.com/@alexadventurez5043" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.youtube.com/@alex_away" target="_blank" rel="noopener noreferrer">
                     <img src="/img/youtube.png" alt="YouTube" className={styles.socialIcon} />
                   </a>
                   <a href="https://www.linkedin.com/in/alex-stoliarchuk/?profileId=ACoAAC7fmAQBT6_Z9cuuSMTiytFceWL2C2x7DYI" target="_blank" rel="noopener noreferrer">
@@ -115,13 +115,21 @@ export default function Contact() {
                   <label htmlFor="service">What can I help you with?</label>
                   <select id="service" name="service" required className={styles.select}>
                     <option value="" disabled defaultValue="">Select a service</option>
-                    <option value="Create a Website">Create a Website</option>
-                    <option value="Redesign a Website">Redesign a Website</option>
-                    <option value="UX/UI Design">UX/UI Design</option>
-                    <option value="Content Strategy">Content Strategy</option>
-                    <option value="SEO Optimization">SEO Optimization</option>
-                    <option value="Just a Question">Just a Question</option>
-                    <option value="Other">Other</option>
+                    <optgroup label="Design">
+                      <option value="UX/UI Design">UX/UI Design</option>
+                      <option value="Landing Page Design">Landing Page Design</option>
+                      <option value="Mobile App Design">Mobile App Design</option>
+                    </optgroup>
+                    <optgroup label="Development">
+                      <option value="Create a Website">Create a Website</option>
+                      <option value="Redesign a Website">Redesign a Website</option>
+                      <option value="Business Website in 7 Days">Business Website in 7 Days</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                      <option value="SEO Optimization">SEO Optimization</option>
+                      <option value="Just a Question">Just a Question</option>
+                      <option value="Other">Other</option>
+                    </optgroup>
                   </select>
                 </div>
                 <div className={styles.formGroup}>

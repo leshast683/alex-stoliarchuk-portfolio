@@ -1,13 +1,16 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Projects from './pages/Projects';
 import Contact from './pages/Contact';
+import Admin from './pages/Admin';
 import SWCProject from './pages/SWCProject';
+import { trackSectionView, trackEvent } from './analytics';
 import './App.css';
 
 function MainPage() {
@@ -20,8 +23,39 @@ function MainPage() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    trackEvent('page_view', { page: 'home' });
+    const sections = ['home', 'about', 'projects', 'contact'];
+    const observers = sections.map(id => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const observer = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) trackSectionView(id); },
+        { threshold: 0.3 }
+      );
+      observer.observe(el);
+      return observer;
+    });
+    return () => observers.forEach(o => o && o.disconnect());
+  }, []);
+
   return (
     <div className="app">
+      <Helmet>
+        <title>Alex Stoliarchuk — UX/UI Designer & Web Developer</title>
+        <meta name="description" content="Portfolio of Alex Stoliarchuk — Digital Media student at UCF specializing in UX/UI design, web development, landing pages, and mobile app design." />
+        <meta name="keywords" content="Alex Stoliarchuk, UX/UI designer, web developer, portfolio, landing page design, mobile app design, UCF, digital media, business website" />
+        <meta name="author" content="Alex Stoliarchuk" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://alexbuildsweb.com" />
+        <meta property="og:title" content="Alex Stoliarchuk — UX/UI Designer & Web Developer" />
+        <meta property="og:description" content="Portfolio of Alex Stoliarchuk — UX/UI design, web development, landing pages, and creative digital experiences." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://alexbuildsweb.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Alex Stoliarchuk — UX/UI Designer & Web Developer" />
+        <meta name="twitter:description" content="Portfolio of Alex Stoliarchuk — UX/UI design, web development, landing pages, and creative digital experiences." />
+      </Helmet>
       <Navbar />
       <main className="main-content">
         <section id="home" className="page-section">
@@ -39,7 +73,7 @@ function MainPage() {
             Check My Resume
           </button>
         </div>
-        <section id="contact" className="page-section contact-section">
+<section id="contact" className="page-section contact-section">
           <Contact />
         </section>
       </main>
@@ -79,6 +113,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/swc-project" element={<SWCProject />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>
   );
