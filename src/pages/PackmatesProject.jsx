@@ -46,7 +46,7 @@ export default function PackmatesProject() {
         <div className={styles.overviewStrip}>
           <div className={styles.overviewItem}><span className={styles.overviewLabel}>Type</span><span>Capstone Project</span></div>
           <div className={styles.overviewItem}><span className={styles.overviewLabel}>Team</span><span>Collaborative</span></div>
-          <div className={styles.overviewItem}><span className={styles.overviewLabel}>Tech</span><span>HTML, CSS, JS, PHP</span></div>
+          <div className={styles.overviewItem}><span className={styles.overviewLabel}>Tech</span><span>HTML, CSS, JS, PHP, Docker</span></div>
           <div className={styles.overviewItem}><span className={styles.overviewLabel}>Year</span><span>2026</span></div>
         </div>
 
