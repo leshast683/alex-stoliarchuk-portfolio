@@ -15,6 +15,20 @@ app.use(cors({
 }));
 app.use(express.json());
 
+if (process.env.DEBUG === 'true') {
+  app.use((req, _res, next) => {
+    const body = { ...req.body };
+    if (body.email) body.email = '***@***.***';
+    console.log({
+      timestamp: new Date().toISOString(),
+      method: req.method,
+      route: req.originalUrl,
+      body,
+    });
+    next();
+  });
+}
+
 const projects = [
   {
     id: 1,
