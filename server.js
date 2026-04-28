@@ -7,7 +7,9 @@ const app = express();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: ['https://alexbuildsweb.com', 'http://localhost:5173']
+}));
 app.use(express.json());
 
 const projects = [
