@@ -44,6 +44,13 @@ const allProjects = [
     tech: "Claude",
     image: "/img/budgetly.png",
     type: "budgetly"
+  },
+  {
+    id: 6,
+    title: "Coming Soon",
+    description: "Something new is in the works. Stay tuned for the next project.",
+    tech: "",
+    type: "coming-soon"
   }
 ];
 
@@ -83,12 +90,19 @@ export default function Projects() {
         {projects.map((project) => (
           <div key={project.id} className={styles.card}>
             <h3>{project.title}</h3>
-            {project.logo ? (
+            {project.type === 'coming-soon' ? (
+              <div className={styles.comingSoonPlaceholder}>
+                <span className={styles.comingSoonIcon}>🚧</span>
+                <span className={styles.comingSoonBadge}>In Progress</span>
+              </div>
+            ) : project.logo ? (
               <div className={styles.logoPlaceholder}>
                 <img src={project.logo} alt={`${project.title} logo`} className={styles.projectLogo} />
               </div>
             ) : project.image ? (
-              <img src={project.image} alt={project.title} className={styles.previewImage} />
+              <div className={styles.logoPlaceholder}>
+                <img src={project.image} alt={project.title} className={styles.projectLogo} />
+              </div>
             ) : null}
             <p>{project.description}</p>
             <p className={styles.tech}>{project.tech}</p>
@@ -100,7 +114,7 @@ export default function Projects() {
               <button className={styles.viewButton} onClick={() => window.open('/packmates-project', '_blank')}>View Project</button>
             ) : project.type === 'link' ? (
               <button className={styles.viewButton} onClick={() => window.open(project.url, '_blank')}>View Project</button>
-            ) : (
+            ) : project.type === 'coming-soon' ? null : (
               <button className={styles.viewButton} onClick={() => openModal(project)}>View Project</button>
             )}
           </div>

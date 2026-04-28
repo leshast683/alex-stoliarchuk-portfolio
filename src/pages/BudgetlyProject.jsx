@@ -105,12 +105,12 @@ export default function BudgetlyProject() {
           <p className={styles.sectionIntro}>Budgetly uses a warm, earthy palette — calm and approachable for a finance tool, with clear semantic colors for income, expenses, and highlights.</p>
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
             {[
-              { color: '#1a0e06', label: 'Dark Brown', hex: '#1A0E06' },
-              { color: '#ede8e0', label: 'Cream', hex: '#EDE8E0', border: true },
-              { color: '#34A853', label: 'Income', hex: '#34A853' },
-              { color: '#EA4335', label: 'Expenses', hex: '#EA4335' },
-              { color: '#FBBC05', label: 'Amber', hex: '#FBBC05' },
-              { color: '#4285F4', label: 'Interactive', hex: '#4285F4' },
+              { color: '#8B6534', label: 'Primary Brown', hex: '#8B6534' },
+              { color: '#F5EDE0', label: 'Background', hex: '#F5EDE0', border: true },
+              { color: '#EDE8D5', label: 'Card Cream', hex: '#EDE8D5', border: true },
+              { color: '#5B8C45', label: 'Income', hex: '#5B8C45' },
+              { color: '#C0392B', label: 'Expenses', hex: '#C0392B' },
+              { color: '#1C1C1C', label: 'Text', hex: '#1C1C1C' },
             ].map(({ color, label, hex, border }) => (
               <div key={hex} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
                 <div style={{ width: '72px', height: '72px', borderRadius: '12px', background: color, border: border ? '1px solid #e0e0e0' : 'none', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }} />
