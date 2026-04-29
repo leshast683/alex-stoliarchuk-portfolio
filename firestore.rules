@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Public reads on everything
+    match /{document=**} {
+      allow read: if true;
+    }
+
+    // Contact form submissions — anyone can create, no client updates or deletes
+    match /contacts/{doc} {
+      allow create: if true;
+    }
+
+    // Newsletter subscribers — anyone can subscribe, no client deletes
+    // (unsubscribe goes through /api/unsubscribe which uses Admin SDK)
+    match /subscribers/{doc} {
+      allow create: if true;
+    }
+
+    // Client-side analytics tracking
+    match /analytics/{doc} {
+      allow create: if true;
+    }
+
+    // Projects — no client writes; all mutations go through /api/admin-projects
+    // which uses Firebase Admin SDK and bypasses these rules
+    match /projects/{doc} {
+      allow write: if false;
+    }
+  }
+}

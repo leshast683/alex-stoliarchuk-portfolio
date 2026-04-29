@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import {
-  collection, getDocs, addDoc, updateDoc, deleteDoc,
-  doc, orderBy, query
-} from 'firebase/firestore';
-
-const PASSWORD = 'alex2024admin';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 
 const EMPTY_FORM = {
   title: '', description: '', tech: '', type: 'modal',
@@ -22,31 +17,62 @@ const DEFAULTS = [
 ];
 
 export default function Admin() {
-  const [authed, setAuthed] = useState(false);
+  const [token, setToken] = useState(() => sessionStorage.getItem('admin_token') || '');
+  const authed = !!token;
+
   const [input, setInput] = useState('');
-  const [error, setError] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+
   const [tab, setTab] = useState('analytics');
   const [analytics, setAnalytics] = useState([]);
   const [subscribers, setSubscribers] = useState([]);
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const [form, setForm] = useState(EMPTY_FORM);
   const [editingId, setEditingId] = useState(null);
   const [msg, setMsg] = useState('');
+  const [saving, setSaving] = useState(false);
 
-  const login = (e) => {
+  const authHeaders = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
+
+  const handleUnauthorized = () => {
+    sessionStorage.removeItem('admin_token');
+    setToken('');
+  };
+
+  const login = async (e) => {
     e.preventDefault();
-    if (input === PASSWORD) { setAuthed(true); setError(''); }
-    else setError('Incorrect password');
+    setLoginLoading(true);
+    try {
+      const res = await fetch('/api/admin-auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: input }),
+      });
+      if (!res.ok) { setLoginError('Incorrect password'); return; }
+      const { token: t } = await res.json();
+      sessionStorage.setItem('admin_token', t);
+      setToken(t);
+      setLoginError('');
+    } catch {
+      setLoginError('Login failed. Try again.');
+    } finally {
+      setLoginLoading(false);
+    }
+  };
+
+  const logout = () => {
+    sessionStorage.removeItem('admin_token');
+    setToken('');
   };
 
   const fetchProjects = async () => {
-    try {
-      const snap = await getDocs(query(collection(db, 'projects'), orderBy('order', 'asc')));
-      setProjects(snap.docs.map(d => ({ id: d.id, ...d.data() })));
-    } catch {
-      setProjects([]);
-    }
+    const res = await fetch('/api/admin-projects', { headers: authHeaders });
+    if (res.status === 401) { handleUnauthorized(); return; }
+    if (!res.ok) return;
+    setProjects(await res.json());
   };
 
   useEffect(() => {
@@ -70,57 +96,68 @@ export default function Admin() {
   const saveProject = async (e) => {
     e.preventDefault();
     if (!form.title.trim()) return;
+    setSaving(true);
+
     const data = {
       title: form.title.trim(),
       description: form.description.trim(),
       tech: form.tech.trim(),
       type: form.type,
       order: Number(form.order),
+      ...(form.logo.trim() && { logo: form.logo.trim() }),
+      ...(form.image.trim() && { image: form.image.trim() }),
+      ...(form.url.trim() && { url: form.url.trim() }),
+      ...(form.images.trim() && { images: form.images.split(',').map(s => s.trim()).filter(Boolean) }),
     };
-    if (form.logo.trim()) data.logo = form.logo.trim();
-    if (form.image.trim()) data.image = form.image.trim();
-    if (form.url.trim()) data.url = form.url.trim();
-    if (form.images.trim()) data.images = form.images.split(',').map(s => s.trim()).filter(Boolean);
 
+    let res;
     if (editingId) {
-      await updateDoc(doc(db, 'projects', editingId), data);
-      setMsg('Project updated.');
+      res = await fetch(`/api/admin-projects?id=${editingId}`, {
+        method: 'PUT', headers: authHeaders, body: JSON.stringify(data),
+      });
     } else {
-      await addDoc(collection(db, 'projects'), data);
-      setMsg('Project added.');
+      res = await fetch('/api/admin-projects', {
+        method: 'POST', headers: authHeaders, body: JSON.stringify(data),
+      });
     }
+
+    if (res?.status === 401) { handleUnauthorized(); return; }
+
     setForm(EMPTY_FORM);
     setEditingId(null);
     await fetchProjects();
+    setMsg(editingId ? 'Project updated.' : 'Project added.');
     setTimeout(() => setMsg(''), 3000);
+    setSaving(false);
   };
 
   const deleteProject = async (id) => {
     if (!window.confirm('Delete this project?')) return;
-    await deleteDoc(doc(db, 'projects', id));
+    const res = await fetch(`/api/admin-projects?id=${id}`, {
+      method: 'DELETE', headers: authHeaders,
+    });
+    if (res?.status === 401) { handleUnauthorized(); return; }
     await fetchProjects();
   };
 
   const startEdit = (p) => {
     setForm({
-      title: p.title || '',
-      description: p.description || '',
-      tech: p.tech || '',
-      type: p.type || 'modal',
-      logo: p.logo || '',
-      image: p.image || '',
+      title: p.title || '', description: p.description || '',
+      tech: p.tech || '', type: p.type || 'modal',
+      logo: p.logo || '', image: p.image || '',
       images: Array.isArray(p.images) ? p.images.join(', ') : (p.images || ''),
-      url: p.url || '',
-      order: p.order ?? 0,
+      url: p.url || '', order: p.order ?? 0,
     });
     setEditingId(p.id);
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
   const seedProjects = async () => {
-    if (!window.confirm('Add all default projects to Firestore? Continue?')) return;
+    if (!window.confirm('Add all default projects to Firestore?')) return;
     for (const p of DEFAULTS) {
-      await addDoc(collection(db, 'projects'), p);
+      await fetch('/api/admin-projects', {
+        method: 'POST', headers: authHeaders, body: JSON.stringify(p),
+      });
     }
     await fetchProjects();
     setMsg('Default projects seeded.');
@@ -132,9 +169,12 @@ export default function Admin() {
       <div style={s.page}>
         <form style={s.loginBox} onSubmit={login}>
           <h2 style={s.title}>Admin</h2>
-          <input type="password" placeholder="Password" value={input} onChange={e => setInput(e.target.value)} style={s.input} autoFocus />
-          {error && <p style={s.err}>{error}</p>}
-          <button type="submit" style={s.btn}>Login</button>
+          <input type="password" placeholder="Password" value={input}
+            onChange={e => setInput(e.target.value)} style={s.input} autoFocus />
+          {loginError && <p style={s.err}>{loginError}</p>}
+          <button type="submit" style={s.btn} disabled={loginLoading}>
+            {loginLoading ? 'Logging in…' : 'Login'}
+          </button>
         </form>
       </div>
     );
@@ -149,7 +189,11 @@ export default function Admin() {
   return (
     <div style={s.page}>
       <div style={s.container}>
-        <h1 style={s.title}>Dashboard</h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+          <h1 style={{ ...s.title, margin: 0 }}>Dashboard</h1>
+          <button style={s.cancelBtn} onClick={logout}>Log out</button>
+        </div>
+
         <div style={s.tabs}>
           <button style={{ ...s.tab, ...(tab === 'analytics' ? s.tabActive : {}) }} onClick={() => setTab('analytics')}>Analytics ({analytics.length})</button>
           <button style={{ ...s.tab, ...(tab === 'subscribers' ? s.tabActive : {}) }} onClick={() => setTab('subscribers')}>Subscribers ({subscribers.length})</button>
@@ -169,13 +213,7 @@ export default function Admin() {
               ))}
             </div>
             <table style={s.table}>
-              <thead>
-                <tr>
-                  <th style={s.th}>Event</th>
-                  <th style={s.th}>Data</th>
-                  <th style={s.th}>Time</th>
-                </tr>
-              </thead>
+              <thead><tr><th style={s.th}>Event</th><th style={s.th}>Data</th><th style={s.th}>Time</th></tr></thead>
               <tbody>
                 {analytics.map(row => (
                   <tr key={row.id}>
@@ -191,13 +229,7 @@ export default function Admin() {
 
         {!loading && tab === 'subscribers' && (
           <table style={s.table}>
-            <thead>
-              <tr>
-                <th style={s.th}>#</th>
-                <th style={s.th}>Email</th>
-                <th style={s.th}>Subscribed</th>
-              </tr>
-            </thead>
+            <thead><tr><th style={s.th}>#</th><th style={s.th}>Email</th><th style={s.th}>Subscribed</th></tr></thead>
             <tbody>
               {subscribers.map((row, i) => (
                 <tr key={row.id}>
@@ -217,21 +249,12 @@ export default function Admin() {
           <>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
               <p style={s.muted}>{projects.length} project{projects.length !== 1 ? 's' : ''} in Firestore</p>
-              {projects.length === 0 && (
-                <button style={s.btn} onClick={seedProjects}>Seed Defaults</button>
-              )}
+              {projects.length === 0 && <button style={s.btn} onClick={seedProjects}>Seed Defaults</button>}
             </div>
 
             {projects.length > 0 && (
               <table style={{ ...s.table, marginBottom: '2rem' }}>
-                <thead>
-                  <tr>
-                    <th style={s.th}>#</th>
-                    <th style={s.th}>Title</th>
-                    <th style={s.th}>Type</th>
-                    <th style={s.th}>Actions</th>
-                  </tr>
-                </thead>
+                <thead><tr><th style={s.th}>#</th><th style={s.th}>Title</th><th style={s.th}>Type</th><th style={s.th}>Actions</th></tr></thead>
                 <tbody>
                   {projects.map((p, i) => (
                     <tr key={p.id}>
@@ -308,7 +331,7 @@ export default function Admin() {
                   </div>
                 )}
                 <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
-                  <button type="submit" style={s.btn}>{editingId ? 'Update Project' : 'Add Project'}</button>
+                  <button type="submit" style={s.btn} disabled={saving}>{editingId ? 'Update Project' : 'Add Project'}</button>
                   {editingId && (
                     <button type="button" style={s.cancelBtn} onClick={() => { setForm(EMPTY_FORM); setEditingId(null); }}>Cancel</button>
                   )}
