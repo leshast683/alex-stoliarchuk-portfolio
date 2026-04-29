@@ -25,17 +25,32 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Invalid email address' });
   }
 
+  const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim() || 'unknown';
+
   try {
-    // Check for duplicate
-    const q = query(collection(db, 'subscribers'), where('email', '==', email));
-    const existing = await getDocs(q);
-    if (!existing.empty) {
+    // IP rate limiting: max 3 subscriptions per hour from same IP
+    const ipSnap = await getDocs(query(collection(db, 'subscribers'), where('ip', '==', ip)));
+    const cutoff = Date.now() - 60 * 60 * 1000;
+    const recentFromIp = ipSnap.docs.filter(d => {
+      const ts = d.data().subscribedAt;
+      if (!ts) return false;
+      const date = ts.toDate ? ts.toDate() : new Date(ts);
+      return date.getTime() > cutoff;
+    });
+    if (recentFromIp.length >= 3) {
+      return res.status(429).json({ error: 'Too many requests. Please try again later.' });
+    }
+
+    // Check for duplicate email
+    const emailSnap = await getDocs(query(collection(db, 'subscribers'), where('email', '==', email)));
+    if (!emailSnap.empty) {
       return res.status(409).json({ error: 'You are already subscribed!' });
     }
 
     // Save to Firestore
     await addDoc(collection(db, 'subscribers'), {
       email,
+      ip,
       subscribedAt: serverTimestamp(),
     });
 
@@ -43,7 +58,7 @@ export default async function handler(req, res) {
     await resend.emails.send({
       from: 'Alex Builds Web <onboarding@resend.dev>',
       to: email,
-      subject: 'You\'re on the list!',
+      subject: "You're on the list!",
       html: `
         <div style="font-family: sans-serif; max-width: 480px; margin: 0 auto; padding: 2rem;">
           <h2 style="color: #000;">Thanks for subscribing!</h2>

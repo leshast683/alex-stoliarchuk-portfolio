@@ -100,6 +100,7 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
     await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
       to: 'alexbuildsweb1@gmail.com',
+      replyTo: email,
       subject: `New message from ${name}`,
       html: contactEmailTemplate({ name, company, email, phone, service, message }),
     });
