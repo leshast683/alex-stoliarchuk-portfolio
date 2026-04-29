@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import styles from './Projects.module.css';
 
 const allProjects = [
@@ -55,7 +57,23 @@ const allProjects = [
 ];
 
 export default function Projects() {
-  const [projects] = useState(allProjects);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const snap = await getDocs(query(collection(db, 'projects'), orderBy('order', 'asc')));
+        if (!snap.empty) {
+          setProjects(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+        } else {
+          setProjects(allProjects);
+        }
+      } catch {
+        setProjects(allProjects);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   const openModal = (project) => {
     const modal = document.createElement('div');
