@@ -1,12 +1,12 @@
 .footer {
-  background-color: #1a1a1a;
-  color: white;
+  background-color: var(--footer-bg, #1a1a1a);
+  color: var(--footer-text, #ffffff);
   padding: 0.5rem;
   text-align: center;
   width: 100%;
   margin: 0;
   box-sizing: border-box;
-  border-top: 1px solid #333;
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
 .footer::before {
@@ -24,12 +24,25 @@
   );
 }
 
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.footerLogo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
 .social {
   margin-top: 1rem;
 }
 
 .social a {
-  color: white;
+  color: var(--footer-text, #ffffff);
   margin: 0 1rem;
   text-decoration: none;
   letter-spacing: 0.1em;

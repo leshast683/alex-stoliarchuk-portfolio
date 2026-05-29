@@ -4,7 +4,10 @@ import styles from './Footer.module.css';
 export default function Footer() {
   return (
     <footer className={styles.footer}>
-      <p>&copy; 2025 Alex Builds Web. All rights reserved.</p>
+      <div className={styles.copyright}>
+        <img src="/favicon.png" alt="Alex Builds Web logo" className={styles.footerLogo} />
+        <span>2026 Alex Builds Web. All rights reserved.</span>
+      </div>
       <div className={styles.social}>
         <a href="https://github.com/leshast683" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/alex-stoliarchuk/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
