@@ -26,16 +26,6 @@ export default function Services() {
 
   return (
     <section className={styles.services}>
-      {decorSpheres.filter(s => !hidden.includes(s.id)).map(s => (
-        <div
-          key={s.id}
-          aria-hidden="true"
-          className={`${styles.decorSphere}${popped.includes(s.id) ? ` ${styles.decorSpherePop}` : ''}`}
-          style={{ width: s.width, height: s.width, top: s.top, left: s.left, right: s.right, animationDelay: s.delay }}
-          onClick={() => handlePop(s.id)}
-          onAnimationEnd={() => { if (popped.includes(s.id)) setHidden(h => [...h, s.id]); }}
-        />
-      ))}
       <h2 className={styles.heading}>What I Do</h2>
       <div className={styles.container}>
         {services.map((s, i) => (
@@ -57,6 +47,16 @@ export default function Services() {
           </div>
         ))}
       </div>
+      {decorSpheres.filter(s => !hidden.includes(s.id)).map(s => (
+        <div
+          key={s.id}
+          aria-hidden="true"
+          className={`${styles.decorSphere}${popped.includes(s.id) ? ` ${styles.decorSpherePop}` : ''}`}
+          style={{ width: s.width, height: s.width, top: s.top, left: s.left, right: s.right, animationDelay: popped.includes(s.id) ? '0s' : s.delay }}
+          onClick={() => handlePop(s.id)}
+          onAnimationEnd={() => { if (popped.includes(s.id)) setHidden(h => [...h, s.id]); }}
+        />
+      ))}
     </section>
   );
 }

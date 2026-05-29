@@ -166,7 +166,7 @@
   opacity: 0.45;
   animation: float2 7s ease-in-out infinite;
   cursor: pointer;
-  z-index: 0;
+  z-index: 2;
 }
 
 .decorSpherePop {
