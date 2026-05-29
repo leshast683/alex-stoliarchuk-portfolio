@@ -166,7 +166,6 @@
     inset 3px 3px 8px rgba(255, 255, 255, 0.8);
   opacity: 1;
   animation: float2 7s ease-in-out infinite;
-  z-index: 2;
 }
 
 .decorSpherePop {

@@ -8,14 +8,13 @@ const services = [
 ];
 
 const behindSpheres = [
-  { id: 4, width: 45, top: '45%', left: '50%', delay: '1.5s' },
+  { id: 1, width: 120, top: '60%', left: '2%',  delay: '1.2s' },
+  { id: 3, width: 95,  top: '70%', right: '4%', delay: '2s'   },
 ];
 
 const frontSpheres = [
-  { id: 0, width: 80,  top: '12%', left: '6%',  delay: '0.3s' },
-  { id: 1, width: 120, top: '60%', left: '2%',  delay: '1.2s' },
-  { id: 2, width: 55,  top: '20%', right: '5%', delay: '0.7s' },
-  { id: 3, width: 95,  top: '70%', right: '4%', delay: '2s'   },
+  { id: 0, width: 80, top: '12%', left: '6%',  delay: '0.3s', zIndex: 2 },
+  { id: 2, width: 55, top: '20%', right: '5%', delay: '0.7s', zIndex: 2 },
 ];
 
 export default function Services() {
@@ -35,7 +34,7 @@ export default function Services() {
         key={s.id}
         aria-hidden="true"
         className={`${styles.decorSphere}${isPopping ? ` ${styles.decorSpherePop}` : ''}`}
-        style={{ width: s.width, height: s.width, top: s.top, left: s.left, right: s.right, animationDelay: isPopping ? '0s' : s.delay, cursor: clickable ? 'pointer' : 'default' }}
+        style={{ width: s.width, height: s.width, top: s.top, left: s.left, right: s.right, zIndex: s.zIndex ?? 0, animationDelay: isPopping ? '0s' : s.delay, cursor: clickable ? 'pointer' : 'default' }}
         onClick={() => clickable && handlePop(s.id)}
         onAnimationEnd={() => { if (isPopping) setHidden(h => [...h, s.id]); }}
       />
