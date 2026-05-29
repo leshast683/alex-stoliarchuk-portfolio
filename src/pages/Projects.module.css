@@ -92,7 +92,6 @@
   overflow: hidden;
   background: var(--bg-alt, #ece9e4);
   position: relative;
-  cursor: pointer;
 }
 
 .cardImage img {
@@ -107,31 +106,6 @@
   transform: scale(1.05);
 }
 
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.card:hover .imageOverlay {
-  opacity: 1;
-}
-
-.overlayArrow {
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  border: 1.5px solid rgba(255,255,255,0.7);
-  padding: 0.5rem 1.1rem;
-  border-radius: 999px;
-  backdrop-filter: blur(4px);
-}
 
 .comingSoonImg {
   width: 100%;

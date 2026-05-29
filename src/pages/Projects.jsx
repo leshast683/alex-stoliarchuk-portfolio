@@ -165,7 +165,7 @@ export default function Projects() {
                   key={project.id}
                   className={styles.card}
                 >
-                  <div className={styles.cardImage} onClick={() => handleView(project)}>
+                  <div className={styles.cardImage}>
                     {project.type === 'coming-soon' ? (
                       <div className={styles.comingSoonImg}><span>🚧</span></div>
                     ) : project.logo ? (
@@ -175,11 +175,6 @@ export default function Projects() {
                     ) : (
                       <div className={styles.imgPlaceholder} />
                     )}
-                    <div className={styles.imageOverlay}>
-                      <span className={styles.overlayArrow}>
-                        {project.type === 'coming-soon' ? 'Notify Me' : 'View →'}
-                      </span>
-                    </div>
                   </div>
                   <div className={styles.cardContent}>
                     {project.category && (
