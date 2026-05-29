@@ -1,15 +1,15 @@
 .contactSection {
-  background-color: #f5f3ef;
+  background-color: var(--bg-contact, #f5f3ef);
   width: 100%;
   padding: 1.5rem 2rem;
-  border: 2px solid #000;
+  border: 2px solid var(--text, #000);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 -4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .contact {
   max-width: 1100px;
   margin: 0 auto;
-  background: #f5f3ef;
+  background: var(--bg-contact, #f5f3ef);
 }
 
 h1 {
@@ -20,9 +20,9 @@ h1 {
 }
 
 .card {
-  background: #fff;
+  background: var(--bg, #fff);
   border-radius: 24px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 60px var(--card-shadow, rgba(0, 0, 0, 0.08));
   padding: 1.5rem;
 }
 
@@ -38,8 +38,8 @@ h1 {
 .badge {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background: #000;
-  color: white;
+  background: var(--text, #000);
+  color: var(--bg, white);
   border-radius: 20px;
   margin-bottom: 1rem;
 }
@@ -56,11 +56,15 @@ h1 {
 .socialIcon {
   width: 40px;
   height: 40px;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, filter 0.2s ease;
 }
 
 .socialMediaIcons a:hover .socialIcon {
   transform: scale(1.2);
+}
+
+[data-theme="dark"] .socialIcon {
+  filter: brightness(0) invert(1);
 }
 
 .form {
@@ -81,7 +85,7 @@ h1 {
 .formGroup label {
   display: block;
   margin-bottom: 0.4rem;
-  color: #888;
+  color: var(--text-muted, #888);
   font-size: 0.8rem;
   font-weight: 600;
   letter-spacing: 0.08em;
@@ -92,66 +96,131 @@ h1 {
 .formGroup textarea {
   width: 100%;
   padding: 0.8rem 1rem;
-  border: 1.5px solid #e5e5e5;
+  border: 1.5px solid var(--border, #e5e5e5);
   border-radius: 10px;
-  background: #fafafa;
+  background: var(--input-bg, #fafafa);
   font-size: 1rem;
-  color: #000;
+  color: var(--text, #000);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
   outline: none;
 }
 
 .formGroup input:focus,
 .formGroup textarea:focus {
-  border-color: #000;
-  background: #fff;
+  border-color: var(--text, #000);
+  background: var(--bg, #fff);
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
 }
 
-.select {
+.inputError {
+  border-color: #e53e3e !important;
+  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.12) !important;
+}
+
+.fieldError {
+  display: block;
+  margin-top: 0.35rem;
+  color: #e53e3e;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* Custom dropdown */
+.customSelect {
+  position: relative;
   width: 100%;
-  padding: 0.8rem 2.5rem 0.8rem 1rem;
-  border: 1.5px solid #e5e5e5;
-  border-radius: 10px;
-  background: #fafafa;
-  font-size: 1rem;
-  color: #000;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  outline: none;
-  font-family: inherit;
 }
 
-.select:focus {
-  border-color: #000;
-  background-color: #fff;
+.selectTrigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid var(--border, #e5e5e5);
+  border-radius: 10px;
+  background: var(--input-bg, #fafafa);
+  font-size: 1rem;
+  color: var(--text, #000);
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  text-align: left;
+}
+
+.selectTrigger:hover,
+.selectOpen {
+  border-color: var(--text, #000);
+  background: var(--bg, #fff);
   box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
 }
 
-.select option {
-  background: #fff;
-  color: #000;
-  padding: 0.5rem 1rem;
-  font-size: 0.95rem;
+.placeholder {
+  color: var(--text-muted, #aaa);
 }
 
-.select option:disabled {
-  color: #aaa;
+.selectChevron {
+  flex-shrink: 0;
+  color: var(--text-muted, #888);
+  transition: transform 0.2s ease;
 }
 
-.select optgroup {
+.chevronUp {
+  transform: rotate(180deg);
+}
+
+.selectDropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg, #fff);
+  border: 1.5px solid var(--border, #e5e5e5);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  list-style: none;
+  padding: 0.4rem;
+  margin: 0;
+  overflow: hidden;
+}
+
+.dropdownGroup {
+  margin-bottom: 0.25rem;
+}
+
+.optgroupLabel {
+  padding: 0.5rem 0.75rem 0.3rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #888;
-  background: #f5f5f5;
-  padding: 0.25rem 0;
+  color: var(--text-muted, #999);
+}
+
+.dropdownOption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: var(--text, #000);
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.dropdownOption:hover {
+  background: var(--input-bg, #f5f5f5);
+}
+
+.optionSelected {
+  background: var(--input-bg, #f0f0f0);
+  font-weight: 600;
+}
+
+.optionSelected svg {
+  color: var(--text, #000);
 }
 
 .formGroup textarea {
@@ -165,25 +234,25 @@ h1 {
   justify-content: flex-end;
 }
 
-button {
-  background: #000;
-  color: white;
+.submitBtn {
+  background: var(--text, #000);
+  color: var(--bg, white);
   padding: 0.75rem 2rem;
-  border: 2px solid #000;
+  border: 2px solid var(--text, #000);
   border-radius: 20px;
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-button:hover:not(:disabled) {
-  background: #fff;
-  color: #000;
+.submitBtn:hover:not(:disabled) {
+  background: var(--bg, #fff);
+  color: var(--text, #000);
   transform: translateY(-2px);
 }
 
-button:disabled {
-  background: #666;
+.submitBtn:disabled {
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
@@ -219,12 +288,12 @@ button:disabled {
   font-size: 2.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #000;
+  color: var(--text, #000);
 }
 
 .successMsg {
   font-size: 1.1rem;
-  color: #555;
+  color: var(--text-muted, #555);
   line-height: 1.8;
 }
 
@@ -234,7 +303,7 @@ button:disabled {
 }
 
 .error {
-  color: red;
+  color: #c0392b;
   margin-top: 1rem;
 }
 
@@ -309,7 +378,7 @@ button:disabled {
     height: 30px;
   }
 
-  button {
+  .submitBtn {
     width: 100%;
     margin-top: 1rem;
     margin-bottom: 2rem;
