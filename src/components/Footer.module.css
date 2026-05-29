@@ -33,6 +33,14 @@
   margin-bottom: 0;
 }
 
+.logoBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+}
+
 .footerLogo {
   width: 90px;
   height: 90px;
