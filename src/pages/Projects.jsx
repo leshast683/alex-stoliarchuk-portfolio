@@ -169,11 +169,7 @@ export default function Projects() {
                     {project.logo ? (
                       <img src={project.logo} alt={project.title} />
                     ) : project.image ? (
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className={['swc', 'budgetly'].includes(project.type) ? styles.imageContain : ''}
-                      />
+                      <img src={project.image} alt={project.title} />
                     ) : (
                       <div className={styles.comingSoonImg}><span>🚧</span></div>
                     )}
