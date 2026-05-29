@@ -48,7 +48,7 @@ const allProjects = [
     category: "UX/UI Design",
     description: "A UX/UI design for a task management app built around user research and intuitive information architecture. The result: a clean interface where users can manage tasks, set reminders, and track progress — without feeling overwhelmed.",
     tech: "Figma, User Research, Prototyping",
-    image: "/img/manager.jpg",
+    image: "/img/priority-card.png",
     type: "modal",
     images: ["/img/priority1.jpg", "/img/priority2.jpg", "/img/priority3.jpg", "/img/priority4.jpg"]
   },
