@@ -93,11 +93,6 @@
       fbq('init', 'XXXXXXXXXXXXXXXXXX');
       fbq('track', 'PageView');
     </script>
-    <noscript>
-      <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXXXXX&ev=PageView&noscript=1" />
-    </noscript>
-
     <!-- LinkedIn Insight Tag -->
     <!-- Replace XXXXXXX with your LinkedIn Partner ID -->
     <script>
@@ -110,12 +105,18 @@
       b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";
       s.parentNode.insertBefore(b,s)})(window.lintrk);
     </script>
-    <noscript>
-      <img height="1" width="1" style="display:none" alt=""
-        src="https://px.ads.linkedin.com/collect/?pid=XXXXXXX&fmt=gif" />
-    </noscript>
   </head>
   <body>
+    <!-- Meta Pixel noscript fallback -->
+    <noscript>
+      <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXXXXX&amp;ev=PageView&amp;noscript=1" />
+    </noscript>
+    <!-- LinkedIn noscript fallback -->
+    <noscript>
+      <img height="1" width="1" style="display:none" alt=""
+        src="https://px.ads.linkedin.com/collect/?pid=XXXXXXX&amp;fmt=gif" />
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/index.jsx"></script>
   </body>
