@@ -1,0 +1,222 @@
+.services {
+  padding: 0 0 4rem;
+  margin-top: -16rem;
+  position: relative;
+  overflow: hidden;
+  background-image: radial-gradient(circle, rgba(100, 82, 58, 0.1) 1.5px, transparent 1.5px);
+  background-size: 30px 30px;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: 110%;
+  height: 480px;
+  background: radial-gradient(ellipse at center,
+    rgba(220, 190, 145, 0.28) 0%,
+    rgba(210, 175, 125, 0.12) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.heading {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Container ── */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9rem;
+  padding: 2rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Main sphere wrapper (carries float animation) ── */
+.sphereWrap {
+  flex-shrink: 0;
+  cursor: default;
+  perspective: 900px;
+}
+
+/* ── Inner sphere (carries 3D look + hover scale) ── */
+.sphereInner {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    #fdfaf7 0%,
+    #f5f3ef 28%,
+    #e8e3dc 55%,
+    #d4cdc3 80%,
+    #c2b9ae 100%
+  );
+  box-shadow:
+    inset -18px -18px 36px rgba(0, 0, 0, 0.1),
+    inset 10px 10px 24px rgba(255, 255, 255, 0.95),
+    0 12px 35px rgba(0, 0, 0, 0.13);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
+}
+
+.sphereInner.hovered {
+  transform: scale(1.08) rotateY(8deg);
+  box-shadow:
+    inset -24px -16px 36px rgba(0, 0, 0, 0.12),
+    inset 5px 12px 24px rgba(255, 255, 255, 0.95),
+    0 20px 50px rgba(150, 110, 50, 0.22),
+    0 0 45px rgba(200, 160, 80, 0.18);
+}
+
+/* ── Color variants ── */
+/* variant1: warm beige (default — already set on sphereInner) */
+
+/* variant2: cool grey-white */
+.variant2 {
+  background: radial-gradient(
+    circle at 35% 30%,
+    #ffffff 0%,
+    #f2f1f0 28%,
+    #e4e2df 55%,
+    #cdc9c4 80%,
+    #b8b4ae 100%
+  );
+}
+
+/* variant3: light brown */
+.variant3 {
+  background: radial-gradient(
+    circle at 35% 30%,
+    #faf4ee 0%,
+    #f0e2d0 28%,
+    #e0ccb4 55%,
+    #ccb496 80%,
+    #b89c7a 100%
+  );
+}
+
+.number {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1;
+  color: rgba(90, 75, 58, 0.4);
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2a2218;
+  line-height: 1.25;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  color: #000000;
+  line-height: 1.45;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+  max-width: 82%;
+}
+
+.taglineVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Decorative background spheres ── */
+.decorSphere {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    #f5f3ef 0%,
+    #e2dbd2 45%,
+    #cec5ba 100%
+  );
+  box-shadow:
+    inset -6px -6px 14px rgba(0, 0, 0, 0.08),
+    inset 3px 3px 8px rgba(255, 255, 255, 0.8);
+  opacity: 0.55;
+}
+
+/* ── Float animations ── */
+@keyframes float1 {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-22px); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0); }
+  45%       { transform: translateY(-16px); }
+}
+@keyframes float3 {
+  0%, 100% { transform: translateY(0); }
+  55%       { transform: translateY(-28px); }
+}
+
+.float1 { animation: float1 6s   ease-in-out infinite; }
+.float2 { animation: float2 8s   ease-in-out infinite; }
+.float3 { animation: float3 5.5s ease-in-out infinite; }
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+  .services {
+    padding: 0 0 2rem;
+    margin-top: -4rem;
+  }
+
+  .heading {
+    font-size: 3rem;
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .sphereWrap {
+    width: 260px !important;
+    height: 260px !important;
+  }
+
+  .tagline {
+    opacity: 1;
+    transform: none;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 2.2rem;
+  }
+
+  .sphereWrap {
+    width: 230px !important;
+    height: 230px !important;
+  }
+}
