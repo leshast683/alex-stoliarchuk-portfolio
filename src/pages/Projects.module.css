@@ -441,11 +441,11 @@
 
   .cardImageBudgetly img {
     object-fit: contain;
-    transform: scale(2.7);
+    transform: scale(2.7) translateY(8px);
   }
 
   .card:hover .cardImageBudgetly img {
-    transform: scale(2.7);
+    transform: scale(2.7) translateY(8px);
   }
 
   .projectPage {
