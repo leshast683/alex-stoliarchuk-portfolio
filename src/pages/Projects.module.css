@@ -454,11 +454,11 @@
 
   .cardImageSwc img {
     object-fit: contain;
-    transform: scale(2.0);
+    transform: scale(2.2);
   }
 
   .card:hover .cardImageSwc img {
-    transform: scale(2.0);
+    transform: scale(2.2);
   }
 
   .projectPage {
