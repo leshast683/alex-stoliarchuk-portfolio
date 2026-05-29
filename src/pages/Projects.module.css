@@ -441,6 +441,7 @@
 
   .cardImageBudgetly img {
     object-fit: contain;
+    transform: scale(1.2);
   }
 
   .projectPage {
