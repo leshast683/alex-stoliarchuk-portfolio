@@ -436,12 +436,16 @@
   }
 
   .cardImageBudgetly {
-    background: #f9f8f6;
+    background: #ffffff;
   }
 
   .cardImageBudgetly img {
     object-fit: contain;
-    transform: scale(2.3);
+    transform: scale(2.7);
+  }
+
+  .card:hover .cardImageBudgetly img {
+    transform: scale(2.7);
   }
 
   .projectPage {
