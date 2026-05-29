@@ -15,6 +15,22 @@ const allProjects = [
   },
   {
     id: 2,
+    title: "Budgetly",
+    description: "A personal finance tracker built with Claude. Tracks income, expenses, and savings goals in one focused dashboard — designed from the ground up to make budgeting feel simple, not stressful.",
+    tech: "Claude",
+    image: "/img/budgetly.png",
+    type: "budgetly"
+  },
+  {
+    id: 3,
+    title: "Packmates",
+    description: "A collaborative travel packing app built as a UCF capstone project. Ships with adaptive packing lists powered by live weather data, multi-user trip management, and a QR-coded luggage tag — delivered as a fully functional prototype.",
+    tech: "HTML, CSS, JavaScript, PHP, Docker",
+    logo: "/img/logo.pack.png",
+    type: "packmates"
+  },
+  {
+    id: 4,
     title: "Radio App Redesign",
     description: "A complete UX/UI redesign of a radio app grounded in user research, wireframes, and high-fidelity prototypes. The redesign simplified navigation, reduced friction in the listening experience, and was fully optimized for mobile.",
     tech: "Figma, User Research, Prototyping",
@@ -23,29 +39,13 @@ const allProjects = [
     images: ["/img/first.jpg", "/img/second.jpg", "/img/third.jpg", "/img/forth.jpg"]
   },
   {
-    id: 3,
+    id: 5,
     title: "Priority Manager App",
     description: "A UX/UI design for a task management app built around user research and intuitive information architecture. The result: a clean interface where users can manage tasks, set reminders, and track progress — without feeling overwhelmed.",
     tech: "Figma, User Research, Prototyping",
     image: "/img/manager.jpg",
     type: "modal",
     images: ["/img/priority1.jpg", "/img/priority2.jpg", "/img/priority3.jpg", "/img/priority4.jpg"]
-  },
-  {
-    id: 4,
-    title: "Packmates",
-    description: "A collaborative travel packing app built as a UCF capstone project. Ships with adaptive packing lists powered by live weather data, multi-user trip management, and a QR-coded luggage tag — delivered as a fully functional prototype.",
-    tech: "HTML, CSS, JavaScript, PHP, Docker",
-    logo: "/img/logo.pack.png",
-    type: "packmates"
-  },
-  {
-    id: 5,
-    title: "Budgetly",
-    description: "A personal finance tracker built with Claude. Tracks income, expenses, and savings goals in one focused dashboard — designed from the ground up to make budgeting feel simple, not stressful.",
-    tech: "Claude",
-    image: "/img/budgetly.png",
-    type: "budgetly"
   },
   {
     id: 6,
@@ -149,13 +149,25 @@ export default function Projects() {
             <motion.div
               key={page}
               className={styles.grid}
-              initial={{ opacity: 0, x: direction * 48 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction * -48 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              custom={direction}
+              variants={{
+                hidden: (d) => ({ opacity: 0, x: d * 80 }),
+                visible: { opacity: 1, x: 0, transition: { staggerChildren: 0.08, when: 'beforeChildren' } },
+                exit: (d) => ({ opacity: 0, x: d * -80, transition: { duration: 0.2 } }),
+              }}
             >
-              {visibleProjects.map((project) => (
-                <div key={project.id} className={styles.card}>
+              {visibleProjects.map((project, i) => (
+                <motion.div
+                  key={project.id}
+                  className={styles.card}
+                  variants={{
+                    hidden: (d) => ({ opacity: 0, x: d * 60, y: 12 }),
+                    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] } },
+                  }}
+                >
                   <div className={styles.cardImage}>
                     {project.type === 'coming-soon' ? (
                       <div className={styles.comingSoonImg}>
@@ -180,20 +192,17 @@ export default function Projects() {
                       {project.type === 'coming-soon' ? 'Notify Me' : 'View Project'}
                     </button>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
           </AnimatePresence>
 
           {pageCount > 1 && (
             <div className={styles.navRow}>
-              <button
-                className={styles.navBtn}
-                onClick={goPrev}
-                disabled={page === 0}
-                aria-label="Previous projects"
-              >
-                ←
+              <button className={styles.navBtn} onClick={goPrev} disabled={page === 0} aria-label="Previous projects">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
               </button>
               <div className={styles.dots}>
                 {Array.from({ length: pageCount }).map((_, i) => (
@@ -204,13 +213,10 @@ export default function Projects() {
                   />
                 ))}
               </div>
-              <button
-                className={styles.navBtn}
-                onClick={goNext}
-                disabled={page === pageCount - 1}
-                aria-label="Next projects"
-              >
-                →
+              <button className={styles.navBtn} onClick={goNext} disabled={page === pageCount - 1} aria-label="Next projects">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
               </button>
             </div>
           )}
