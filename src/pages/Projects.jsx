@@ -38,7 +38,7 @@ const allProjects = [
     category: "UX/UI Design",
     description: "A complete UX/UI redesign of a radio app grounded in user research, wireframes, and high-fidelity prototypes. The redesign simplified navigation, reduced friction in the listening experience, and was fully optimized for mobile.",
     tech: "Figma, User Research, Prototyping",
-    image: "/img/radio.jpg",
+    image: "/img/radio-card.png",
     type: "modal",
     images: ["/img/first.jpg", "/img/second.jpg", "/img/third.jpg", "/img/forth.jpg"]
   },
@@ -58,6 +58,7 @@ const allProjects = [
     category: "In Progress",
     description: "Something new is in the works. Stay tuned for the next project.",
     tech: "",
+    image: "/img/coming-soon-card.png",
     type: "coming-soon"
   }
 ];
@@ -166,14 +167,12 @@ export default function Projects() {
                   className={styles.card}
                 >
                   <div className={styles.cardImage}>
-                    {project.type === 'coming-soon' ? (
-                      <div className={styles.comingSoonImg}><span>🚧</span></div>
-                    ) : project.logo ? (
+                    {project.logo ? (
                       <img src={project.logo} alt={project.title} />
                     ) : project.image ? (
                       <img src={project.image} alt={project.title} />
                     ) : (
-                      <div className={styles.imgPlaceholder} />
+                      <div className={styles.comingSoonImg}><span>🚧</span></div>
                     )}
                   </div>
                   <div className={styles.cardContent}>
