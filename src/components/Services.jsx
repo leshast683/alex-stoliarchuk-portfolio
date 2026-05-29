@@ -12,12 +12,6 @@ export default function Services() {
 
   return (
     <section className={styles.services}>
-      <div className={styles.ringsWrapper} aria-hidden="true">
-        <div className={`${styles.ring} ${styles.ring1}`} />
-        <div className={`${styles.ring} ${styles.ring2}`} />
-        <div className={`${styles.ring} ${styles.ring3}`} />
-        <div className={`${styles.ring} ${styles.ring4}`} />
-      </div>
       <h2 className={styles.heading}>What I Do</h2>
       <div className={styles.container}>
         {services.map((s, i) => (
