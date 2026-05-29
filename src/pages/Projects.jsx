@@ -155,9 +155,9 @@ export default function Projects() {
             <motion.div
               key={page}
               className={styles.grid}
-              initial={{ opacity: 0, x: direction * 24 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction * -24 }}
+              initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.98 }}
+              animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+              exit={{ opacity: 0, filter: 'blur(8px)', scale: 0.98 }}
               transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
             >
               {visibleProjects.map((project) => (
