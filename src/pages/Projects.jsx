@@ -18,7 +18,7 @@ const allProjects = [
     title: "Budgetly",
     description: "A personal finance tracker built with Claude. Tracks income, expenses, and savings goals in one focused dashboard — designed from the ground up to make budgeting feel simple, not stressful.",
     tech: "Claude",
-    image: "/img/budgetly.png",
+    image: "/img/budgetly-card.png",
     type: "budgetly"
   },
   {
