@@ -4,7 +4,7 @@ import styles from './Services.module.css';
 const services = [
   { number: '1', title: 'UX/UI Design',   tagline: 'I design apps and websites people genuinely enjoy using.', size: 270, floatClass: 'float1', delay: '0s',   variant: 'variant1' },
   { number: '2', title: 'Web Development', tagline: 'I build fast, clean websites that work beautifully on any device.', size: 290, floatClass: 'float2', delay: '1.5s', variant: 'variant2' },
-  { number: '3', title: 'Digital Creation', tagline: 'I get your site found on Google and launch it fast.',      size: 270, floatClass: 'float3', delay: '0.8s', variant: 'variant3' },
+  { number: '3', title: 'Digital Creation', tagline: 'I craft the content, visuals, and brand identity that make your digital presence impossible to ignore.', size: 270, floatClass: 'float3', delay: '0.8s', variant: 'variant3' },
 ];
 
 export default function Services() {
