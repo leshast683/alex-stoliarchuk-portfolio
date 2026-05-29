@@ -448,6 +448,19 @@
     transform: scale(2.7) translateY(8px);
   }
 
+  .cardImageSwc {
+    background: #000000;
+  }
+
+  .cardImageSwc img {
+    object-fit: contain;
+    transform: scale(0.9);
+  }
+
+  .card:hover .cardImageSwc img {
+    transform: scale(0.9);
+  }
+
   .projectPage {
     max-width: 100%;
     padding: 1.5rem 0.5rem;
