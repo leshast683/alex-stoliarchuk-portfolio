@@ -12,6 +12,7 @@ export default function Services() {
 
   return (
     <section className={styles.services}>
+      <div className={styles.watermark} aria-hidden="true">WHAT I DO</div>
       <h2 className={styles.heading}>What I Do</h2>
       <div className={styles.container}>
         {services.map((s, i) => (
