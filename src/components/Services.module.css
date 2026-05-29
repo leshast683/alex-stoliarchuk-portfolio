@@ -19,10 +19,9 @@
 /* ── Container ── */
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 14rem;
-  padding: 2rem 0;
+  padding: 2rem 4rem;
   position: relative;
   z-index: 1;
 }
