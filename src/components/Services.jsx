@@ -10,9 +10,9 @@ const services = [
 const behindSpheres = [];
 
 const frontSpheres = [
-  { id: 0, width: 80,  top: '12%', left: '6%',  delay: '0.3s', zIndex: 2 },
+  { id: 0, width: 80,  top: '12%', left: '6%',  delay: '0.3s', zIndex: 4 },
   { id: 1, width: 120, top: '60%', left: '2%',  delay: '1.2s', zIndex: 2 },
-  { id: 2, width: 55,  top: '20%', right: '5%', delay: '0.7s', zIndex: 2 },
+  { id: 2, width: 55,  top: '20%', right: '5%', delay: '0.7s', zIndex: 4 },
   { id: 3, width: 95,  top: '70%', right: '4%', delay: '2s',   zIndex: 2 },
 ];
 

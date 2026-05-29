@@ -23,7 +23,7 @@
   align-items: center;
   padding: 2rem 4rem;
   position: relative;
-  z-index: 1;
+  z-index: 3;
 }
 
 /* ── Main sphere wrapper (carries float animation) ── */
