@@ -1,6 +1,6 @@
 
 .projects {
-  padding: 2rem 0.75rem;
+  padding: 2rem 0.25rem;
   margin-top: -2rem;
 }
 
@@ -65,7 +65,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 1.25rem;
   align-items: stretch;
 }
 
@@ -77,7 +77,7 @@
   overflow: hidden;
   background: var(--card-bg, #f5f5f5);
   border: 1px solid var(--border, #e8e8e8);
-  min-height: 260px;
+  min-height: 320px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 

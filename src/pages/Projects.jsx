@@ -149,24 +149,15 @@ export default function Projects() {
             <motion.div
               key={page}
               className={styles.grid}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-              custom={direction}
-              variants={{
-                hidden: (d) => ({ opacity: 0, x: d * 80 }),
-                visible: { opacity: 1, x: 0, transition: { staggerChildren: 0.08, when: 'beforeChildren' } },
-                exit: (d) => ({ opacity: 0, x: d * -80, transition: { duration: 0.2 } }),
-              }}
+              initial={{ opacity: 0, x: direction * 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -30 }}
+              transition={{ duration: 0.15, ease: 'easeOut' }}
             >
-              {visibleProjects.map((project, i) => (
-                <motion.div
+              {visibleProjects.map((project) => (
+                <div
                   key={project.id}
                   className={styles.card}
-                  variants={{
-                    hidden: (d) => ({ opacity: 0, x: d * 60, y: 12 }),
-                    visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] } },
-                  }}
                 >
                   <div className={styles.cardImage}>
                     {project.type === 'coming-soon' ? (
@@ -192,7 +183,7 @@ export default function Projects() {
                       {project.type === 'coming-soon' ? 'Notify Me' : 'View Project'}
                     </button>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </motion.div>
           </AnimatePresence>
