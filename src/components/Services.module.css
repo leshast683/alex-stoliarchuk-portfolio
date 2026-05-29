@@ -16,22 +16,6 @@
   z-index: 1;
 }
 
-.watermark {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 13rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--text, #000);
-  opacity: 0.05;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
 /* ── Container ── */
 .container {
   display: flex;
@@ -173,7 +157,10 @@
   box-shadow:
     inset -6px -6px 14px rgba(0, 0, 0, 0.08),
     inset 3px 3px 8px rgba(255, 255, 255, 0.8);
-  opacity: 0.55;
+  opacity: 0.45;
+  animation: float2 7s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ── Float animations ── */

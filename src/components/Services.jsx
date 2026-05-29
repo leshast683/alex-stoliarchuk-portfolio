@@ -12,7 +12,11 @@ export default function Services() {
 
   return (
     <section className={styles.services}>
-      <div className={styles.watermark} aria-hidden="true">WHAT I DO</div>
+      <div className={styles.decorSphere} aria-hidden="true" style={{ width: 80,  height: 80,  top: '12%', left: '6%',  animationDelay: '0.3s' }} />
+      <div className={styles.decorSphere} aria-hidden="true" style={{ width: 120, height: 120, top: '60%', left: '2%',  animationDelay: '1.2s' }} />
+      <div className={styles.decorSphere} aria-hidden="true" style={{ width: 55,  height: 55,  top: '20%', right: '5%', animationDelay: '0.7s' }} />
+      <div className={styles.decorSphere} aria-hidden="true" style={{ width: 95,  height: 95,  top: '70%', right: '4%', animationDelay: '2s'   }} />
+      <div className={styles.decorSphere} aria-hidden="true" style={{ width: 45,  height: 45,  top: '45%', left: '50%', animationDelay: '1.5s' }} />
       <h2 className={styles.heading}>What I Do</h2>
       <div className={styles.container}>
         {services.map((s, i) => (
