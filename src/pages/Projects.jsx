@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
 import { db } from '../firebase';
 import { collection, getDocs, orderBy, query } from 'firebase/firestore';
 import styles from './Projects.module.css';
@@ -8,7 +8,7 @@ const allProjects = [
   {
     id: 1,
     title: "SWC 2026 Summer Program",
-    description: "Designed and launched the official landing page for SWC's 2026 Summer Program from concept to final product, serving as the primary registration and informational hub.",
+    description: "Designed and launched the official landing page for SWC's 2026 Summer Program from concept to live — the primary registration and information hub for the program, delivered in a single sprint.",
     tech: "Graphy",
     logo: "/img/logo5jpg.jpg",
     type: "swc"
@@ -16,7 +16,7 @@ const allProjects = [
   {
     id: 2,
     title: "Radio App Redesign",
-    description: "A modern redesign of a radio app focused on better user experience and simple, clear navigation. The project included user research, wireframes, and high-quality design mockups. I also made sure the layout worked well on mobile screens.",
+    description: "A complete UX/UI redesign of a radio app grounded in user research, wireframes, and high-fidelity prototypes. The redesign simplified navigation, reduced friction in the listening experience, and was fully optimized for mobile.",
     tech: "Figma, User Research, Prototyping",
     image: "/img/radio.jpg",
     type: "modal",
@@ -25,7 +25,7 @@ const allProjects = [
   {
     id: 3,
     title: "Priority Manager App",
-    description: "A task management app that helps users stay organized and keep track of their daily tasks with an easy-to-use design and helpful scheduling tools. It makes it easier to stay on top of to-do lists, set reminders, and see progress all in one place.",
+    description: "A UX/UI design for a task management app built around user research and intuitive information architecture. The result: a clean interface where users can manage tasks, set reminders, and track progress — without feeling overwhelmed.",
     tech: "Figma, User Research, Prototyping",
     image: "/img/manager.jpg",
     type: "modal",
@@ -34,7 +34,7 @@ const allProjects = [
   {
     id: 4,
     title: "Packmates",
-    description: "A collaborative travel packing app built as a capstone project. Features adaptive packing lists powered by a weather API, trip management, and a smart QR code luggage tag.",
+    description: "A collaborative travel packing app built as a UCF capstone project. Ships with adaptive packing lists powered by live weather data, multi-user trip management, and a QR-coded luggage tag — delivered as a fully functional prototype.",
     tech: "HTML, CSS, JavaScript, PHP, Docker",
     logo: "/img/logo.pack.png",
     type: "packmates"
@@ -42,7 +42,7 @@ const allProjects = [
   {
     id: 5,
     title: "Budgetly",
-    description: "A personal finance tracker built entirely with Claude. Track income, expenses, and savings goals in one clean dashboard — designed to make budgeting simple and stress-free.",
+    description: "A personal finance tracker built with Claude. Tracks income, expenses, and savings goals in one focused dashboard — designed from the ground up to make budgeting feel simple, not stressful.",
     tech: "Claude",
     image: "/img/budgetly.png",
     type: "budgetly"
@@ -56,8 +56,13 @@ const allProjects = [
   }
 ];
 
+const CARDS_PER_PAGE = 3;
+
 export default function Projects() {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(0);
+  const [direction, setDirection] = useState(1);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -70,10 +75,18 @@ export default function Projects() {
         }
       } catch {
         setProjects(allProjects);
+      } finally {
+        setLoading(false);
       }
     };
     fetchProjects();
   }, []);
+
+  const pageCount = Math.ceil(projects.length / CARDS_PER_PAGE);
+  const visibleProjects = projects.slice(page * CARDS_PER_PAGE, page * CARDS_PER_PAGE + CARDS_PER_PAGE);
+
+  const goNext = () => { setDirection(1); setPage(p => p + 1); };
+  const goPrev = () => { setDirection(-1); setPage(p => p - 1); };
 
   const openModal = (project) => {
     const modal = document.createElement('div');
@@ -96,6 +109,18 @@ export default function Projects() {
     modal.querySelector(`.${styles.closeButton}`).onclick = () => document.body.removeChild(modal);
   };
 
+  const handleView = (project) => {
+    if (project.type === 'swc') window.open('/swc-project', '_blank');
+    else if (project.type === 'budgetly') window.open('/budgetly-project', '_blank');
+    else if (project.type === 'packmates') window.open('/packmates-project', '_blank');
+    else if (project.type === 'link') window.open(project.url, '_blank');
+    else if (project.type === 'coming-soon') {
+      const el = document.getElementById('contact');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      else window.location.href = '/#contact';
+    } else openModal(project);
+  };
+
   return (
     <motion.div
       className={styles.projects}
@@ -104,46 +129,93 @@ export default function Projects() {
       transition={{ duration: 0.5 }}
     >
       <h1>My Projects</h1>
-      <div className={styles.grid}>
-        {projects.map((project) => (
-          <div key={project.id} className={styles.card}>
-            <h3>{project.title}</h3>
-            {project.type === 'coming-soon' ? (
-              <div className={styles.comingSoonPlaceholder}>
-                <span className={styles.comingSoonIcon}>🚧</span>
-                <span className={styles.comingSoonBadge}>In Progress</span>
+      {loading ? (
+        <div className={styles.grid}>
+          {[1, 2, 3].map(i => (
+            <div key={i} className={styles.skeletonCard} aria-hidden="true">
+              <div className={styles.skeletonImg} />
+              <div className={styles.skeletonBody}>
+                <div className={styles.skeletonTitle} />
+                <div className={styles.skeletonText} />
+                <div className={styles.skeletonText} style={{ width: '60%' }} />
+                <div className={styles.skeletonBtn} />
               </div>
-            ) : project.logo ? (
-              <div className={styles.logoPlaceholder}>
-                <img src={project.logo} alt={`${project.title} logo`} className={styles.projectLogo} />
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className={styles.carouselWrapper}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={page}
+              className={styles.grid}
+              initial={{ opacity: 0, x: direction * 48 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: direction * -48 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
+            >
+              {visibleProjects.map((project) => (
+                <div key={project.id} className={styles.card}>
+                  <div className={styles.cardImage}>
+                    {project.type === 'coming-soon' ? (
+                      <div className={styles.comingSoonImg}>
+                        <span>🚧</span>
+                      </div>
+                    ) : project.logo ? (
+                      <img src={project.logo} alt={project.title} />
+                    ) : project.image ? (
+                      <img src={project.image} alt={project.title} />
+                    ) : (
+                      <div className={styles.imgPlaceholder} />
+                    )}
+                  </div>
+                  <div className={styles.cardContent}>
+                    <h3 className={styles.cardTitle}>{project.title}</h3>
+                    <p className={styles.cardDesc}>{project.description}</p>
+                    {project.tech && <span className={styles.tech}>{project.tech}</span>}
+                    <button
+                      className={styles.viewButton}
+                      onClick={() => handleView(project)}
+                    >
+                      {project.type === 'coming-soon' ? 'Notify Me' : 'View Project'}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+
+          {pageCount > 1 && (
+            <div className={styles.navRow}>
+              <button
+                className={styles.navBtn}
+                onClick={goPrev}
+                disabled={page === 0}
+                aria-label="Previous projects"
+              >
+                ←
+              </button>
+              <div className={styles.dots}>
+                {Array.from({ length: pageCount }).map((_, i) => (
+                  <span
+                    key={i}
+                    className={`${styles.dot} ${i === page ? styles.dotActive : ''}`}
+                    onClick={() => { setDirection(i > page ? 1 : -1); setPage(i); }}
+                  />
+                ))}
               </div>
-            ) : project.image ? (
-              <div className={styles.logoPlaceholder}>
-                <img src={project.image} alt={project.title} className={styles.projectLogo} />
-              </div>
-            ) : null}
-            <p>{project.description}</p>
-            <p className={styles.tech}>{project.tech}</p>
-            {project.type === 'swc' ? (
-              <button className={styles.viewButton} onClick={() => window.open('/swc-project', '_blank')}>View Project</button>
-            ) : project.type === 'budgetly' ? (
-              <button className={styles.viewButton} onClick={() => window.open('/budgetly-project', '_blank')}>View Project</button>
-            ) : project.type === 'packmates' ? (
-              <button className={styles.viewButton} onClick={() => window.open('/packmates-project', '_blank')}>View Project</button>
-            ) : project.type === 'link' ? (
-              <button className={styles.viewButton} onClick={() => window.open(project.url, '_blank')}>View Project</button>
-            ) : project.type === 'coming-soon' ? (
-              <button className={styles.viewButton} onClick={() => {
-                const el = document.getElementById('contact');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else window.location.href = '/#contact';
-              }}>Notify Me</button>
-            ) : (
-              <button className={styles.viewButton} onClick={() => openModal(project)}>View Project</button>
-            )}
-          </div>
-        ))}
-      </div>
+              <button
+                className={styles.navBtn}
+                onClick={goNext}
+                disabled={page === pageCount - 1}
+                aria-label="Next projects"
+              >
+                →
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </motion.div>
   );
 }
