@@ -31,10 +31,27 @@
   flex-shrink: 0;
   cursor: default;
   perspective: 900px;
+  position: relative;
+}
+
+.groundShadow {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(130, 100, 60, 0.22);
+  filter: blur(14px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ── Inner sphere (carries 3D look + hover scale) ── */
 .sphereInner {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   border-radius: 50%;
