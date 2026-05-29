@@ -58,7 +58,6 @@ const allProjects = [
     category: "In Progress",
     description: "Something new is in the works. Stay tuned for the next project.",
     tech: "",
-    image: "/img/coming-soon-card.png",
     type: "coming-soon"
   }
 ];
