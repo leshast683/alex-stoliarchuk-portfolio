@@ -436,7 +436,11 @@
   }
 
   .cardImageBudgetly {
-    padding: 2rem;
+    background: #ffffff;
+  }
+
+  .cardImageBudgetly img {
+    object-fit: contain;
   }
 
   .projectPage {
