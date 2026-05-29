@@ -11,7 +11,7 @@ const allProjects = [
     category: "Web Design",
     description: "Designed and launched the official landing page for SWC's 2026 Summer Program from concept to live — the primary registration and information hub for the program, delivered in a single sprint.",
     tech: "Graphy",
-    image: "/img/swc-card.png",
+    image: "/img/swc-card2.png",
     type: "swc"
   },
   {
