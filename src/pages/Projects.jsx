@@ -165,7 +165,7 @@ export default function Projects() {
                   key={project.id}
                   className={styles.card}
                 >
-                  <div className={styles.cardImage}>
+                  <div className={`${styles.cardImage}${project.type === 'budgetly' ? ` ${styles.cardImageBudgetly}` : ''}`}>
                     {project.logo ? (
                       <img src={project.logo} alt={project.title} />
                     ) : project.image ? (
