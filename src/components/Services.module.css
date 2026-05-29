@@ -146,10 +146,10 @@
 
 /* ── Decorative background spheres ── */
 @keyframes popBalloon {
-  0%   { transform: scale(1);    opacity: 0.45; }
-  30%  { transform: scale(1.45); opacity: 0.65; }
-  60%  { transform: scale(1.6);  opacity: 0.3;  }
-  100% { transform: scale(0);    opacity: 0;    }
+  0%   { transform: scale(1);    opacity: 1;   filter: blur(0px);  }
+  10%  { transform: scale(0.88); opacity: 1;   filter: blur(0px);  }
+  45%  { transform: scale(1.7);  opacity: 0.9; filter: blur(1px);  }
+  100% { transform: scale(0.1);  opacity: 0;   filter: blur(6px);  }
 }
 
 .decorSphere {
@@ -164,14 +164,13 @@
   box-shadow:
     inset -6px -6px 14px rgba(0, 0, 0, 0.08),
     inset 3px 3px 8px rgba(255, 255, 255, 0.8);
-  opacity: 0.45;
+  opacity: 1;
   animation: float2 7s ease-in-out infinite;
-  cursor: pointer;
   z-index: 2;
 }
 
 .decorSpherePop {
-  animation: popBalloon 0.45s ease-out forwards !important;
+  animation: popBalloon 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards !important;
   pointer-events: none;
 }
 

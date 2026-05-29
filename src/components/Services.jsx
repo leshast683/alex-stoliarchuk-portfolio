@@ -7,12 +7,15 @@ const services = [
   { number: '3', title: 'Digital Creation', tagline: 'I craft the content, visuals, and brand identity that make your digital presence impossible to ignore.', size: 270, floatClass: 'float3', delay: '0.8s', variant: 'variant3' },
 ];
 
-const decorSpheres = [
-  { id: 0, width: 80,  top: '12%', left: '6%',   delay: '0.3s', zIndex: 2 },
-  { id: 1, width: 120, top: '60%', left: '2%',   delay: '1.2s', zIndex: 2 },
-  { id: 2, width: 55,  top: '20%', right: '5%',  delay: '0.7s', zIndex: 2 },
-  { id: 3, width: 95,  top: '70%', right: '4%',  delay: '2s',   zIndex: 2 },
-  { id: 4, width: 45,  top: '45%', left: '50%',  delay: '1.5s', zIndex: 0 },
+const behindSpheres = [
+  { id: 4, width: 45, top: '45%', left: '50%', delay: '1.5s' },
+];
+
+const frontSpheres = [
+  { id: 0, width: 80,  top: '12%', left: '6%',  delay: '0.3s' },
+  { id: 1, width: 120, top: '60%', left: '2%',  delay: '1.2s' },
+  { id: 2, width: 55,  top: '20%', right: '5%', delay: '0.7s' },
+  { id: 3, width: 95,  top: '70%', right: '4%', delay: '2s'   },
 ];
 
 export default function Services() {
@@ -21,11 +24,27 @@ export default function Services() {
   const [hidden, setHidden] = useState([]);
 
   const handlePop = (id) => {
-    setPopped(p => [...p, id]);
+    if (!popped.includes(id)) setPopped(p => [...p, id]);
+  };
+
+  const renderSphere = (s, clickable) => {
+    if (hidden.includes(s.id)) return null;
+    const isPopping = popped.includes(s.id);
+    return (
+      <div
+        key={s.id}
+        aria-hidden="true"
+        className={`${styles.decorSphere}${isPopping ? ` ${styles.decorSpherePop}` : ''}`}
+        style={{ width: s.width, height: s.width, top: s.top, left: s.left, right: s.right, animationDelay: isPopping ? '0s' : s.delay, cursor: clickable ? 'pointer' : 'default' }}
+        onClick={() => clickable && handlePop(s.id)}
+        onAnimationEnd={() => { if (isPopping) setHidden(h => [...h, s.id]); }}
+      />
+    );
   };
 
   return (
     <section className={styles.services}>
+      {behindSpheres.map(s => renderSphere(s, false))}
       <h2 className={styles.heading}>What I Do</h2>
       <div className={styles.container}>
         {services.map((s, i) => (
@@ -47,16 +66,7 @@ export default function Services() {
           </div>
         ))}
       </div>
-      {decorSpheres.filter(s => !hidden.includes(s.id)).map(s => (
-        <div
-          key={s.id}
-          aria-hidden="true"
-          className={`${styles.decorSphere}${popped.includes(s.id) ? ` ${styles.decorSpherePop}` : ''}`}
-          style={{ width: s.width, height: s.width, top: s.top, left: s.left, right: s.right, zIndex: s.zIndex, animationDelay: popped.includes(s.id) ? '0s' : s.delay }}
-          onClick={() => s.zIndex > 0 && handlePop(s.id)}
-          onAnimationEnd={() => { if (popped.includes(s.id)) setHidden(h => [...h, s.id]); }}
-        />
-      ))}
+      {frontSpheres.map(s => renderSphere(s, true))}
     </section>
   );
 }
