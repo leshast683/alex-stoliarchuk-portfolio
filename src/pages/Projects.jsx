@@ -8,6 +8,7 @@ const allProjects = [
   {
     id: 1,
     title: "SWC 2026 Summer Program",
+    category: "Web Design",
     description: "Designed and launched the official landing page for SWC's 2026 Summer Program from concept to live — the primary registration and information hub for the program, delivered in a single sprint.",
     tech: "Graphy",
     logo: "/img/logo5jpg.jpg",
@@ -16,6 +17,7 @@ const allProjects = [
   {
     id: 2,
     title: "Budgetly",
+    category: "Development",
     description: "A personal finance tracker built with Claude. Tracks income, expenses, and savings goals in one focused dashboard — designed from the ground up to make budgeting feel simple, not stressful.",
     tech: "Claude",
     image: "/img/budgetly-card.png",
@@ -24,6 +26,7 @@ const allProjects = [
   {
     id: 3,
     title: "Packmates",
+    category: "Development",
     description: "A collaborative travel packing app built as a UCF capstone project. Ships with adaptive packing lists powered by live weather data, multi-user trip management, and a QR-coded luggage tag — delivered as a fully functional prototype.",
     tech: "HTML, CSS, JavaScript, PHP, Docker",
     logo: "/img/logo.pack.png",
@@ -32,6 +35,7 @@ const allProjects = [
   {
     id: 4,
     title: "Radio App Redesign",
+    category: "UX/UI Design",
     description: "A complete UX/UI redesign of a radio app grounded in user research, wireframes, and high-fidelity prototypes. The redesign simplified navigation, reduced friction in the listening experience, and was fully optimized for mobile.",
     tech: "Figma, User Research, Prototyping",
     image: "/img/radio.jpg",
@@ -41,6 +45,7 @@ const allProjects = [
   {
     id: 5,
     title: "Priority Manager App",
+    category: "UX/UI Design",
     description: "A UX/UI design for a task management app built around user research and intuitive information architecture. The result: a clean interface where users can manage tasks, set reminders, and track progress — without feeling overwhelmed.",
     tech: "Figma, User Research, Prototyping",
     image: "/img/manager.jpg",
@@ -50,6 +55,7 @@ const allProjects = [
   {
     id: 6,
     title: "Coming Soon",
+    category: "In Progress",
     description: "Something new is in the works. Stay tuned for the next project.",
     tech: "",
     type: "coming-soon"
@@ -145,25 +151,23 @@ export default function Projects() {
         </div>
       ) : (
         <div className={styles.carouselWrapper}>
-          <AnimatePresence mode="wait" initial={false}>
+          <AnimatePresence mode="popLayout" initial={false}>
             <motion.div
               key={page}
               className={styles.grid}
-              initial={{ opacity: 0, x: direction * 30 }}
+              initial={{ opacity: 0, x: direction * 24 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction * -30 }}
-              transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              exit={{ opacity: 0, x: direction * -24 }}
+              transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
             >
               {visibleProjects.map((project) => (
                 <div
                   key={project.id}
                   className={styles.card}
                 >
-                  <div className={styles.cardImage}>
+                  <div className={styles.cardImage} onClick={() => handleView(project)}>
                     {project.type === 'coming-soon' ? (
-                      <div className={styles.comingSoonImg}>
-                        <span>🚧</span>
-                      </div>
+                      <div className={styles.comingSoonImg}><span>🚧</span></div>
                     ) : project.logo ? (
                       <img src={project.logo} alt={project.title} />
                     ) : project.image ? (
@@ -171,16 +175,24 @@ export default function Projects() {
                     ) : (
                       <div className={styles.imgPlaceholder} />
                     )}
+                    <div className={styles.imageOverlay}>
+                      <span className={styles.overlayArrow}>
+                        {project.type === 'coming-soon' ? 'Notify Me' : 'View →'}
+                      </span>
+                    </div>
                   </div>
                   <div className={styles.cardContent}>
+                    {project.category && (
+                      <span className={styles.category}>{project.category}</span>
+                    )}
                     <h3 className={styles.cardTitle}>{project.title}</h3>
                     <p className={styles.cardDesc}>{project.description}</p>
                     {project.tech && <span className={styles.tech}>{project.tech}</span>}
-                    <button
-                      className={styles.viewButton}
-                      onClick={() => handleView(project)}
-                    >
+                    <button className={styles.viewLink} onClick={() => handleView(project)}>
                       {project.type === 'coming-soon' ? 'Notify Me' : 'View Project'}
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
                     </button>
                   </div>
                 </div>
