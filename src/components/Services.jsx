@@ -22,8 +22,7 @@ export default function Services() {
             onMouseEnter={() => setHovered(i)}
             onMouseLeave={() => setHovered(null)}
           >
-            <span className={styles.watermark} aria-hidden="true">0{s.number}</span>
-            <div className={`${styles.sphereInner} ${styles[s.variant]} ${hovered === i ? styles.hovered : ''}`}>
+<div className={`${styles.sphereInner} ${styles[s.variant]} ${hovered === i ? styles.hovered : ''}`}>
               <span className={styles.number}>{s.number}</span>
               <span className={styles.title}>{s.title}</span>
               <span className={`${styles.tagline} ${hovered === i ? styles.taglineVisible : ''}`}>
