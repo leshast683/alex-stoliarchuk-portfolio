@@ -1,7 +1,7 @@
 .footer {
   background-color: var(--footer-bg, #1a1a1a);
   color: var(--footer-text, #ffffff);
-  padding: 2rem 1rem 1.5rem;
+  padding: 1rem 1rem 1.5rem;
   text-align: center;
   width: 100%;
   margin: 0;
@@ -34,8 +34,8 @@
 }
 
 .footerLogo {
-  width: 60px;
-  height: 60px;
+  width: 90px;
+  height: 90px;
   object-fit: contain;
 }
 
