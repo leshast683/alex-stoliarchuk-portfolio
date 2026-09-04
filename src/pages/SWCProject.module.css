@@ -282,14 +282,19 @@
   transition: transform 0.3s ease;
 }
 
-/* Screenshot gallery (portrait app screens) */
+/* Screenshot gallery (portrait app screens) — 7 visible per row, remaining slide into view */
 .screenshotGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  display: flex;
   gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: 0.75rem;
+  -webkit-overflow-scrolling: touch;
 }
 
 .screenshotItem {
+  flex: 0 0 calc((100% - 6 * 1rem) / 7);
+  scroll-snap-align: start;
   border-radius: 12px;
   overflow: hidden;
   background: var(--bg-alt, #f0f0f0);
@@ -405,6 +410,10 @@
     grid-template-columns: 1fr;
   }
 
+  .screenshotItem {
+    flex-basis: calc((100% - 3 * 1rem) / 4);
+  }
+
   .section {
     margin-bottom: 2.5rem;
   }
@@ -437,6 +446,10 @@
 
   .sectionTitle {
     font-size: 1.2rem;
+  }
+
+  .screenshotItem {
+    flex-basis: calc((100% - 2 * 1rem) / 2.4);
   }
 
   .lightboxPrev { left: 0.5rem; }
