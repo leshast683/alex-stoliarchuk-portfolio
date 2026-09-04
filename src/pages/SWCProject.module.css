@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: #ffffff;
+  background: var(--bg, #ffffff);
   display: flex;
   flex-direction: column;
 }
@@ -16,12 +16,12 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  color: #000;
+  color: var(--text, #000);
   font-weight: 600;
   font-size: 1rem;
   margin-bottom: 2.5rem;
   padding: 0.6rem 1.2rem;
-  border: 2px solid #000;
+  border: 2px solid var(--text, #000);
   border-radius: 50px;
   background: transparent;
   cursor: pointer;
@@ -30,8 +30,8 @@
 }
 
 .backArrow:hover {
-  background: #000;
-  color: #fff;
+  background: var(--text, #000);
+  color: var(--bg, #fff);
 }
 
 /* Hero */
@@ -53,7 +53,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #888;
+  color: var(--text-muted, #888);
   display: block;
   margin-bottom: 0.8rem;
 }
@@ -67,7 +67,7 @@
 
 .heroSub {
   font-size: 1.1rem;
-  color: #555;
+  color: var(--text-muted, #555);
   line-height: 1.6;
   max-width: 500px;
 }
@@ -78,8 +78,8 @@
   gap: 0.4rem;
   margin-top: 1.2rem;
   padding: 0.6rem 1.4rem;
-  background: #000;
-  color: #fff;
+  background: var(--text, #000);
+  color: var(--bg, #fff);
   text-decoration: none;
   border-radius: 50px;
   font-weight: 600;
@@ -89,6 +89,10 @@
 
 .liveLink:hover {
   background: #333;
+}
+
+[data-theme="dark"] .liveLink:hover {
+  background: #ccc;
 }
 
 .logoCircle {
@@ -111,8 +115,8 @@
 .overviewStrip {
   display: flex;
   gap: 0;
-  border-top: 1px solid #e0e0e0;
-  border-bottom: 1px solid #e0e0e0;
+  border-top: 1px solid var(--border, #e0e0e0);
+  border-bottom: 1px solid var(--border, #e0e0e0);
   margin-bottom: 4rem;
 }
 
@@ -122,7 +126,7 @@
   flex-direction: column;
   gap: 0.3rem;
   padding: 1.2rem 1.5rem;
-  border-right: 1px solid #e0e0e0;
+  border-right: 1px solid var(--border, #e0e0e0);
   font-size: 0.95rem;
 }
 
@@ -134,7 +138,7 @@
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #999;
+  color: var(--text-muted, #999);
   font-weight: 600;
 }
 
@@ -147,11 +151,11 @@
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  color: #000;
+  color: var(--text, #000);
 }
 
 .sectionIntro {
-  color: #555;
+  color: var(--text-muted, #555);
   line-height: 1.7;
   margin-bottom: 2rem;
   max-width: 640px;
@@ -165,7 +169,7 @@
 }
 
 .researchCard {
-  background: #f9f9f9;
+  background: var(--card-bg, #f9f9f9);
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
@@ -185,7 +189,7 @@
 
 .researchCard p {
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-muted, #555);
   line-height: 1.6;
   margin: 0;
 }
@@ -206,7 +210,7 @@
 .bullet {
   font-size: 1.2rem;
   font-weight: 800;
-  color: #ccc;
+  color: var(--border, #ccc);
   flex-shrink: 0;
   width: 2rem;
   padding-top: 2px;
@@ -219,7 +223,7 @@
 }
 
 .responsibilityItem p {
-  color: #555;
+  color: var(--text-muted, #555);
   line-height: 1.6;
   margin: 0;
   font-size: 0.95rem;
@@ -241,6 +245,12 @@
   line-height: 1.6;
 }
 
+[data-theme="dark"] .impactCard {
+  background: var(--card-bg, #1c1c1c);
+  color: var(--text, #f0f0f0);
+  border: 1px solid var(--border, #2a2a2a);
+}
+
 .impactCard p {
   margin: 0;
 }
@@ -255,7 +265,7 @@
 .redesignItem {
   border-radius: 12px;
   overflow: hidden;
-  background: #f0f0f0;
+  background: var(--bg-alt, #f0f0f0);
   aspect-ratio: 4/3;
   cursor: pointer;
 }
@@ -265,6 +275,33 @@
 }
 
 .redesignImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* Screenshot gallery (portrait app screens) */
+.screenshotGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+}
+
+.screenshotItem {
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--bg-alt, #f0f0f0);
+  aspect-ratio: 9/19.5;
+  cursor: pointer;
+}
+
+.screenshotItem:hover .screenshotImg {
+  transform: scale(1.03);
+}
+
+.screenshotImg {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -395,7 +432,7 @@
   .overviewItem {
     flex: 1 1 100%;
     border-right: none;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--border, #e0e0e0);
   }
 
   .sectionTitle {

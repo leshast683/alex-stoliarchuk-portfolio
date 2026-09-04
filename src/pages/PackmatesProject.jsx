@@ -1,9 +1,24 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import styles from './SWCProject.module.css';
 
+const screenshots = [
+  '/img/packmates-screenshots/01_home.png',
+  '/img/packmates-screenshots/10_home_scrolled.png',
+  '/img/packmates-screenshots/03_discover.png',
+  '/img/packmates-screenshots/04_new_trip.png',
+  '/img/packmates-screenshots/02_trip_itinerary_.png',
+  '/img/packmates-screenshots/05_packing_list.png',
+  '/img/packmates-screenshots/06_packing_list_toiletries.png',
+  '/img/packmates-screenshots/07_packing_list_accessories.png',
+  '/img/packmates-screenshots/09_notifications.png',
+  '/img/packmates-screenshots/08_profile.png',
+];
+
 export default function PackmatesProject() {
+  const [lightboxIndex, setLightboxIndex] = useState(null);
   return (
     <div className={styles.page}>
       <Navbar />
@@ -40,8 +55,8 @@ export default function PackmatesProject() {
               View Live Site →
             </a>
           </div>
-          <div className={styles.logoCircle} style={{ background: '#ffffff' }}>
-            <img src="/img/logo.pack.png" alt="Packmates Logo" className={styles.logo} style={{ objectFit: 'contain', padding: '8px' }} />
+          <div className={styles.logoCircle}>
+            <img src="/img/logo.pack.png" alt="Packmates AI Logo" className={styles.logo} />
           </div>
         </div>
 
@@ -101,6 +116,28 @@ export default function PackmatesProject() {
               <div><strong>Discover & Notifications</strong><p>A discover page for browsing trip ideas and a notifications hub to stay updated on shared list changes from teammates.</p></div>
             </div>
           </div>
+        </section>
+
+        {/* App Screenshots */}
+        <section className={styles.section}>
+          <h2 className={styles.sectionTitle}>📱 App Screenshots</h2>
+          <p className={styles.sectionIntro}>A look at the finished app — from home and trip planning to the adaptive packing list, notifications, and profile.</p>
+          <div className={styles.screenshotGrid}>
+            {screenshots.map((src, i) => (
+              <div key={src} className={styles.screenshotItem} onClick={() => setLightboxIndex(i)}>
+                <img src={src} alt={`Packmates AI screenshot ${i + 1}`} className={styles.screenshotImg} />
+              </div>
+            ))}
+          </div>
+
+          {lightboxIndex !== null && (
+            <div className={styles.lightbox} onClick={() => setLightboxIndex(null)}>
+              <button className={styles.lightboxClose} onClick={(e) => { e.stopPropagation(); setLightboxIndex(null); }}>✕</button>
+              <button className={styles.lightboxPrev} onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + screenshots.length - 1) % screenshots.length); }}>‹</button>
+              <img src={screenshots[lightboxIndex]} alt="Full view" className={styles.lightboxImg} onClick={(e) => e.stopPropagation()} />
+              <button className={styles.lightboxNext} onClick={(e) => { e.stopPropagation(); setLightboxIndex((lightboxIndex + 1) % screenshots.length); }}>›</button>
+            </div>
+          )}
         </section>
 
         {/* Design Guide */}
