@@ -34,8 +34,11 @@ export default function PackmatesProject() {
         <div className={styles.hero}>
           <div className={styles.heroText}>
             <span className={styles.tag}>Capstone · Team Project · Travel App</span>
-            <h1>Packmates</h1>
+            <h1>Packmates AI</h1>
             <p className={styles.heroSub}>A collaborative travel packing app with weather-based adaptive lists, trip management, and a smart physical tag — built as a capstone project.</p>
+            <a href="https://packmatesai.com" target="_blank" rel="noopener noreferrer" className={styles.liveLink}>
+              View Live Site →
+            </a>
           </div>
           <div className={styles.logoCircle} style={{ background: '#ffffff' }}>
             <img src="/img/logo.pack.png" alt="Packmates Logo" className={styles.logo} style={{ objectFit: 'contain', padding: '8px' }} />
@@ -53,7 +56,7 @@ export default function PackmatesProject() {
         {/* Teamwork */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>🤝 Team Collaboration</h2>
-          <p className={styles.sectionIntro}>Packmates was built as a full team effort. Each member owned specific pages and features, working in parallel to deliver a cohesive product that matched our HiFi prototype.</p>
+          <p className={styles.sectionIntro}>Packmates AI was built as a full team effort. Each member owned specific pages and features, working in parallel to deliver a cohesive product that matched our HiFi prototype.</p>
           <div className={styles.researchCards}>
             <div className={styles.researchCard} style={{borderTop: '4px solid #000'}}>
               <span className={styles.researchEmoji}>📋</span>
@@ -149,7 +152,7 @@ export default function PackmatesProject() {
         {/* Site Map */}
         <section className={styles.section}>
           <h2 className={styles.sectionTitle}>🗺️ Final Site Map</h2>
-          <p className={styles.sectionIntro}>The final site map outlines the full structure of Packmates — from registration and login through the home dashboard, smart packing list, trip creation, and all supporting screens.</p>
+          <p className={styles.sectionIntro}>The final site map outlines the full structure of Packmates AI — from registration and login through the home dashboard, smart packing list, trip creation, and all supporting screens.</p>
           <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #e0e0e0', boxShadow: '0 2px 12px rgba(0,0,0,0.06)' }}>
             <img src="/img/packmates-sitemap.png" alt="Packmates Final Site Map" style={{ width: '100%', display: 'block' }} />
           </div>

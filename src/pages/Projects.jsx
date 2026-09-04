@@ -25,7 +25,7 @@ const allProjects = [
   },
   {
     id: 3,
-    title: "Packmates",
+    title: "Packmates AI",
     category: "Development",
     description: "A collaborative travel packing app built as a UCF capstone project. Ships with adaptive packing lists powered by live weather data, multi-user trip management, and a QR-coded luggage tag — delivered as a fully functional prototype.",
     tech: "HTML, CSS, JavaScript, PHP, Docker",
