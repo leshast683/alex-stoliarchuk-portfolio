@@ -55,8 +55,8 @@ export default function PackmatesProject() {
               View Live Site →
             </a>
           </div>
-          <div className={styles.logoCircle}>
-            <img src="/img/logo.pack.png" alt="Packmates AI Logo" className={styles.logo} />
+          <div className={styles.logoCircle} style={{ background: '#ffffff' }}>
+            <img src="/img/logo.pack.png" alt="Packmates AI Logo" className={styles.logo} style={{ objectFit: 'contain', padding: '18%' }} />
           </div>
         </div>
 
